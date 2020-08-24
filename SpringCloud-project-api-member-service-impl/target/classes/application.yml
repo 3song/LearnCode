@@ -1,0 +1,11 @@
+server:
+  port: 18081
+spring:
+  application:
+    name: app-3song-member
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.50.73:18080/eureka
+    register-with-eureka: true
+    fetch-registry: true

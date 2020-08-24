@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringCloud-project-api-member-service" />
+        <module name="SpringCloud-project-api-order-service" />
+        <module name="SpringCloud-project-common" />
+        <module name="springCloud-project-api-order-service-impl" />
+        <module name="Springcloud-project-api-service-eureka" />
+        <module name="springCloud-project-api-member-service-impl" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringCloud-project-api-member-service" options="-parameters" />
+      <module name="SpringCloud-project-api-order-service" options="-parameters" />
+      <module name="SpringCloud-project-common" options="-parameters" />
+      <module name="Springcloud-project-api-service-eureka" options="-parameters" />
+      <module name="springCloud-project-api-member-service-impl" options="-parameters" />
+      <module name="springCloud-project-api-order-service-impl" options="-parameters" />
+      <module name="springCloud-project-api-service" options="" />
+    </option>
+  </component>
+</project>
