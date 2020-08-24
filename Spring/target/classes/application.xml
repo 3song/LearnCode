@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <bean id="users1" class="com.entity.Users" scope="singleton">
+        <constructor-arg name="name" value="陈磊"></constructor-arg>
+        <constructor-arg name="age" value="25"></constructor-arg>
+    </bean>
+    <bean id="userDao" class="com.dao.UserDao"></bean>
+    <bean id="userService" class="com.service.UserService" p:userDao-ref="userDao">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+    <!--扫包范围 就可以使用注解配置 @service-->
+    <context:component-scan base-package="com"></context:component-scan>
+    <!-- 开启事务注解权限 AOP 打印日志-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <!-- 使用xml 配置 AOP-->
+    <!-- 定义切面类 -->
+    <bean id="aop" class="com.aop.SpringLogXml"></bean>
+    <!-- Aop详细配置 -->
+   <!-- <aop:config>
+        &lt;!&ndash;定义一个切入点表达式&ndash;&gt;
+        <aop:pointcut id="pointcut" expression="execution(* com.dao.UserDao.add(..))"/>
+        &lt;!&ndash;定义切面&ndash;&gt;
+        <aop:aspect ref="aop">
+            &lt;!&ndash;环绕通知&ndash;&gt;
+            <aop:around method="beanAroundLog" pointcut-ref="pointcut"></aop:around>
+            &lt;!&ndash;前置通知&ndash;&gt;
+            <aop:before method="beanBeforeLog" pointcut-ref="pointcut"></aop:before>
+            &lt;!&ndash;后置通知&ndash;&gt;
+            <aop:after method="beanAfterLog" pointcut-ref="pointcut"></aop:after>
+            &lt;!&ndash;返回后通知&ndash;&gt;
+            <aop:after-returning method="beanRuntimeLog" pointcut-ref="pointcut"></aop:after-returning>
+            &lt;!&ndash;异常通知&ndash;&gt;
+            <aop:after-throwing method="beanExceptionAfterLog" pointcut-ref="pointcut"></aop:after-throwing>
+        </aop:aspect>
+    </aop:config>-->
+    <!--使用C3P0 数据源-->
+    <bean id="dataSource"  class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          p:driverClass="com.mysql.cj.jdbc.Driver"
+          p:jdbcUrl="jdbc:mysql://localhost:3306/users?characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8"
+          p:user="root"
+          p:password="211716" />
+    <!--使用Spring数据源-->
+    <!--<bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="com.mysql.cj.jdbc.Driver"
+          p:url="jdbc:mysql://localhost:3306/login?useUnicode=true&amp;characterEncoding=UTF-8"
+          p:username="root"
+          p:password="211716" />-->
+    <!-- 配置 jdbcTemplate 工具类-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource"></bean>
+    <!--配置事务-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"></bean>
+
+    <!-- 事务管理器 -->
+<!--    <bean id="txManager"-->
+<!--          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSource" />-->
+<!--    </bean>-->
+    <!-- AOP 配置 声明式事务 -->
+    <!--配置事务增强-->
+<!--    <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+            &lt;!&ndash;read-only="true" 表示不需要开启事务&ndash;&gt;
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="*" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+    &lt;!&ndash; 配置切入点:定义拦截那些方法（切入点表达式） + 事务增强配置 &ndash;&gt;
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* com.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"></aop:advisor>
+    </aop:config>-->
+
+    <!-- 事务注解驱动道，标注回@Transactional的类和方法将答具有事务性 -->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager" />
+</beans>

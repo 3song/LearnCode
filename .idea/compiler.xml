@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="meite-shop-common" />
+        <module name="meite-shop-service-api-stock" />
+        <module name="Thread-Project" />
+        <module name="SpringBoot-Redis" />
+        <module name="Java-Class" />
+        <module name="SpringBoot-RabbitMQ-Consumer" />
+        <module name="Java-Netty4.X" />
+        <module name="RePassword" />
+        <module name="meite-shop-basics-springcloud-zuul" />
+        <module name="UserLoginServer" />
+        <module name="xxl-job-executor-sample-jboot" />
+        <module name="Auto-Annotation" />
+        <module name="NewThreadsTest" />
+        <module name="tx-manager" />
+        <module name="Java-NIO-Netty" />
+        <module name="meite-shop-service-order" />
+        <module name="Member-Public-Dubbo-Api" />
+        <module name="Java-Zookeepers-Lock" />
+        <module name="transaction-dubbo" />
+        <module name="JAVA-XML" />
+        <module name="meite-shop-service-stock" />
+        <module name="xxl-job-core" />
+        <module name="Java-TimeTask" />
+        <module name="Project_A" />
+        <module name="tx-client" />
+        <module name="SpringBoot-CloudDisk" />
+        <module name="ThreadTest" />
+        <module name="Springboot-Mybatis" />
+        <module name="xxl-job-executor-sample-nutz" />
+        <module name="JavaMode" />
+        <module name="xxl-job-executor-sample-spring" />
+        <module name="meite-shop-service-api-member" />
+        <module name="RabbitMQ-Order" />
+        <module name="Spring" />
+        <module name="transaction-motan" />
+        <module name="SpringBoot-Web" />
+        <module name="JavaReturn" />
+        <module name="transaction-springcloud" />
+        <module name="tx-plugins-db" />
+        <module name="SpringBoot-Email" />
+        <module name="meite-shop-service-member" />
+        <module name="Order-Dubbo-Service" />
+        <module name="SpringBoot-TimeTask" />
+        <module name="untitled2" />
+        <module name="meite-shop-service-api-order" />
+        <module name="RabbitMQ-Compensate" />
+        <module name="SpringBoot-RabbitMQ-Producer" />
+        <module name="meite-shop-basics-springcloud-eureka" />
+        <module name="Java-Zookeeper" />
+        <module name="xxl-job-executor-sample-jfinal" />
+        <module name="xxl-job-executor-sample-frameless" />
+        <module name="SpringIOC" />
+        <module name="Member-Dubbo-Api-Impl" />
+        <module name="ThreadCommunication" />
+        <module name="springboot-jsp" />
+        <module name="Java-RedisLock" />
+        <module name="Redis-jedis" />
+        <module name="xxl-job-admin" />
+        <module name="Java-List" />
+        <module name="xxl-job-executor-sample-springboot" />
+        <module name="SpringBoot-ES" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="Access_Token" target="1.8" />
+      <module name="ActiveMQ-Learn" target="8" />
+      <module name="ActiveMQ-Practice" target="1.8" />
+      <module name="Auto-Annotation" target="8" />
+      <module name="Dubbo-Learn" target="1.8" />
+      <module name="IdeaProjects" target="1.8" />
+      <module name="Java-Class" target="1.8" />
+      <module name="Java-Learn" target="8" />
+      <module name="Java-List" target="6" />
+      <module name="Java-Netty4.X" target="1.8" />
+      <module name="Java-NIO" target="1.8" />
+      <module name="Java-NIO-Netty" target="1.8" />
+      <module name="Java-RedisLock" target="1.8" />
+      <module name="Java-TimeTask" target="1.8" />
+      <module name="JAVA-XML" target="1.8" />
+      <module name="Java-Zookeeper" target="1.8" />
+      <module name="Java-Zookeepers-Lock" target="1.8" />
+      <module name="JavaMode" target="8" />
+      <module name="JavaReturn" target="1.8" />
+      <module name="meite-shop-basics" target="1.8" />
+      <module name="meite-shop-basics-springcloud-eureka" target="1.8" />
+      <module name="meite-shop-basics-springcloud-zuul" target="1.8" />
+      <module name="meite-shop-basics-springcloud-zuul (1)" target="1.8" />
+      <module name="meite-shop-common" target="1.8" />
+      <module name="meite-shop-parent" target="1.8" />
+      <module name="meite-shop-service" target="1.8" />
+      <module name="meite-shop-service-api" target="1.8" />
+      <module name="meite-shop-service-api-member" target="1.8" />
+      <module name="meite-shop-service-api-order" target="1.8" />
+      <module name="meite-shop-service-api-stock" target="1.8" />
+      <module name="meite-shop-service-member" target="1.8" />
+      <module name="meite-shop-service-order" target="1.8" />
+      <module name="meite-shop-service-stock" target="1.8" />
+      <module name="Member-Dubbo-Api-Impl" target="1.8" />
+      <module name="Member-Public-Dubbo-Api" target="1.8" />
+      <module name="NewThreadsTest" target="1.8" />
+      <module name="OAuth2.0" target="1.8" />
+      <module name="Order-Dubbo-Service" target="1.8" />
+      <module name="Project_A" target="1.8" />
+      <module name="RabbitMQ" target="1.8" />
+      <module name="RabbitMQ-Compensate" target="1.8" />
+      <module name="RabbitMQ-Order" target="1.8" />
+      <module name="Redis-jedis" target="1.8" />
+      <module name="RePassword" target="1.8" />
+      <module name="Spring" target="1.8" />
+      <module name="SpringBoot-ActiveMQ-Mail-P2P-Consumer" target="1.8" />
+      <module name="SpringBoot-ActiveMQ-Mail-P2P-Producer" target="1.8" />
+      <module name="SpringBoot-Cache" target="1.8" />
+      <module name="SpringBoot-CloudDisk" target="1.8" />
+      <module name="SpringBoot-DataSources" target="1.8" />
+      <module name="SpringBoot-EhChche" target="1.8" />
+      <module name="SpringBoot-Email" target="1.8" />
+      <module name="SpringBoot-ES" target="1.8" />
+      <module name="SpringBoot-First" target="1.8" />
+      <module name="Springboot-Jpa" target="1.8" />
+      <module name="springboot-jsp" target="1.8" />
+      <module name="SpringBoot-Member" target="1.8" />
+      <module name="Springboot-Mybatis" target="1.8" />
+      <module name="SpringBoot-Order" target="1.8" />
+      <module name="SpringBoot-RabbitMQ-Consumer" target="1.8" />
+      <module name="SpringBoot-RabbitMQ-Producer" target="1.8" />
+      <module name="SpringBoot-Redis" target="1.8" />
+      <module name="SpringBoot-RedisCluster" target="1.8" />
+      <module name="SpringBoot-Sessions" target="1.8" />
+      <module name="SpringBoot-Swagger" target="1.8" />
+      <module name="Springboot-Template" target="1.8" />
+      <module name="SpringBoot-TimeTask" target="1.8" />
+      <module name="SpringBoot-Web" target="1.8" />
+      <module name="SpringBootLog4j" target="1.8" />
+      <module name="SpringBootRestful" target="1.8" />
+      <module name="SpringBootUI" target="1.8" />
+      <module name="SpringCloud-2.0-eureka-server" target="1.8" />
+      <module name="SpringCloud-2.0-Member" target="1.8" />
+      <module name="SpringCloud-Config" target="1.8" />
+      <module name="SpringCloud-Config-Client" target="1.8" />
+      <module name="SpringCloud-Config-Server" target="1.8" />
+      <module name="SpringCloud-Consul-Member" target="1.8" />
+      <module name="SpringCloud-Consul-Order" target="1.8" />
+      <module name="SpringCloud-Feign-Member" target="1.8" />
+      <module name="SpringCloud-Gateway-Zuul" target="1.8" />
+      <module name="SpringCloud-Learn" target="1.8" />
+      <module name="SpringCloud-Order" target="1.8" />
+      <module name="SpringCloud-Zookeeper-Member" target="1.8" />
+      <module name="SpringCloud-ZooKeeper-Order" target="1.8" />
+      <module name="SpringIOC" target="1.8" />
+      <module name="Thread-Project" target="1.8" />
+      <module name="ThreadCommunication" target="1.8" />
+      <module name="ThreadTest" target="1.8" />
+      <module name="transaction-dubbo" target="1.8" />
+      <module name="transaction-motan" target="1.8" />
+      <module name="transaction-springcloud" target="1.8" />
+      <module name="tx-client" target="1.8" />
+      <module name="tx-lcn" target="1.8" />
+      <module name="tx-manager" target="1.8" />
+      <module name="tx-plugins-db" target="1.8" />
+      <module name="UserLoginClient" target="1.8" />
+      <module name="xxl-job" target="1.8" />
+      <module name="xxl-job-admin" target="1.8" />
+      <module name="xxl-job-core" target="1.8" />
+      <module name="xxl-job-executor-sample-frameless" target="1.8" />
+      <module name="xxl-job-executor-sample-jboot" target="1.8" />
+      <module name="xxl-job-executor-sample-jfinal" target="1.8" />
+      <module name="xxl-job-executor-sample-nutz" target="1.8" />
+      <module name="xxl-job-executor-sample-spring" target="1.8" />
+      <module name="xxl-job-executor-sample-springboot" target="1.8" />
+      <module name="xxl-job-executor-samples" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Access_Token" options="" />
+      <module name="ActiveMQ-Practice" options="-parameters" />
+      <module name="Auto-Annotation" options="" />
+      <module name="Dubbo-Learn" options="" />
+      <module name="IdeaProjects" options="" />
+      <module name="JAVA-XML" options="" />
+      <module name="Java-Class" options="" />
+      <module name="Java-List" options="" />
+      <module name="Java-NIO" options="" />
+      <module name="Java-NIO-Netty" options="-parameters" />
+      <module name="Java-Netty4.X" options="-parameters" />
+      <module name="Java-RedisLock" options="-parameters" />
+      <module name="Java-TimeTask" options="-parameters" />
+      <module name="Java-Zookeeper" options="" />
+      <module name="Java-Zookeepers-Lock" options="-parameters" />
+      <module name="JavaMode" options="" />
+      <module name="JavaReturn" options="" />
+      <module name="Member-Dubbo-Api-Impl" options="-parameters" />
+      <module name="Member-Public-Dubbo-Api" options="-parameters" />
+      <module name="NewThreadsTest" options="" />
+      <module name="OAuth2.0" options="-parameters" />
+      <module name="Order-Dubbo-Service" options="-parameters" />
+      <module name="Project_A" options="-parameters" />
+      <module name="RabbitMQ" options="" />
+      <module name="RabbitMQ-Compensate" options="-parameters" />
+      <module name="RabbitMQ-Order" options="-parameters" />
+      <module name="RePassword" options="-parameters" />
+      <module name="Redis-jedis" options="-parameters" />
+      <module name="Spring" options="" />
+      <module name="SpringBoot-ActiveMQ-Mail-P2P-Consumer" options="-parameters" />
+      <module name="SpringBoot-ActiveMQ-Mail-P2P-Producer" options="-parameters" />
+      <module name="SpringBoot-Cache" options="" />
+      <module name="SpringBoot-CloudDisk" options="" />
+      <module name="SpringBoot-DataSources" options="-parameters" />
+      <module name="SpringBoot-ES" options="" />
+      <module name="SpringBoot-EhChche" options="" />
+      <module name="SpringBoot-Email" options="" />
+      <module name="SpringBoot-First" options="" />
+      <module name="SpringBoot-Member" options="" />
+      <module name="SpringBoot-Order" options="" />
+      <module name="SpringBoot-RabbitMQ-Consumer" options="-parameters" />
+      <module name="SpringBoot-RabbitMQ-Producer" options="-parameters" />
+      <module name="SpringBoot-Redis" options="-parameters" />
+      <module name="SpringBoot-RedisCluster" options="-parameters" />
+      <module name="SpringBoot-Sessions" options="" />
+      <module name="SpringBoot-Swagger" options="" />
+      <module name="SpringBoot-TimeTask" options="" />
+      <module name="SpringBoot-Web" options="-parameters" />
+      <module name="SpringBootLog4j" options="-parameters" />
+      <module name="SpringBootRestful" options="-parameters" />
+      <module name="SpringBootUI" options="-parameters" />
+      <module name="SpringCloud-2.0-Member" options="-parameters" />
+      <module name="SpringCloud-2.0-eureka-server" options="-parameters" />
+      <module name="SpringCloud-Config" options="" />
+      <module name="SpringCloud-Config-Client" options="" />
+      <module name="SpringCloud-Config-Server" options="" />
+      <module name="SpringCloud-Consul-Member" options="-parameters" />
+      <module name="SpringCloud-Consul-Order" options="-parameters" />
+      <module name="SpringCloud-Feign-Member" options="-parameters" />
+      <module name="SpringCloud-Gateway-Zuul" options="" />
+      <module name="SpringCloud-Learn" options="" />
+      <module name="SpringCloud-Order" options="-parameters" />
+      <module name="SpringCloud-ZooKeeper-Order" options="-parameters" />
+      <module name="SpringCloud-Zookeeper-Member" options="-parameters" />
+      <module name="SpringIOC" options="" />
+      <module name="Springboot-Jpa" options="-parameters" />
+      <module name="Springboot-Mybatis" options="-parameters" />
+      <module name="Springboot-Template" options="" />
+      <module name="Thread-Project" options="" />
+      <module name="ThreadCommunication" options="" />
+      <module name="ThreadTest" options="" />
+      <module name="UserLoginClient" options="-parameters" />
+      <module name="meite-shop-basics-springcloud-eureka" options="-parameters" />
+      <module name="meite-shop-basics-springcloud-zuul" options="-parameters" />
+      <module name="meite-shop-basics-springcloud-zuul (1)" options="-parameters" />
+      <module name="meite-shop-common" options="-parameters" />
+      <module name="meite-shop-service-api-member" options="-parameters" />
+      <module name="meite-shop-service-api-order" options="-parameters" />
+      <module name="meite-shop-service-api-stock" options="-parameters" />
+      <module name="meite-shop-service-member" options="-parameters" />
+      <module name="meite-shop-service-order" options="-parameters" />
+      <module name="meite-shop-service-stock" options="-parameters" />
+      <module name="springboot-jsp" options="-parameters" />
+      <module name="transaction-dubbo" options="" />
+      <module name="transaction-motan" options="" />
+      <module name="transaction-springcloud" options="" />
+      <module name="tx-client" options="" />
+      <module name="tx-lcn" options="" />
+      <module name="tx-manager" options="-parameters" />
+      <module name="tx-plugins-db" options="" />
+      <module name="xxl-job-admin" options="" />
+      <module name="xxl-job-core" options="" />
+      <module name="xxl-job-executor-sample-frameless" options="" />
+      <module name="xxl-job-executor-sample-jboot" options="" />
+      <module name="xxl-job-executor-sample-jfinal" options="" />
+      <module name="xxl-job-executor-sample-nutz" options="" />
+      <module name="xxl-job-executor-sample-spring" options="" />
+      <module name="xxl-job-executor-sample-springboot" options="" />
+    </option>
+  </component>
+</project>

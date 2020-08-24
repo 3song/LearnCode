@@ -1,0 +1,24 @@
+##服务名称 name 应与配置文件名称相同  profile: sit 表示设置 环境 dev sit
+spring:
+  application:
+    name: test-configclient
+  cloud:
+    bootstrap:
+      enabled: false
+    config:
+      profile: sit
+      discovery:
+        service-id: config-server
+        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.50.73:8080/eureka
+server:
+  port: 8082
+#开启所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,16 @@
+server:
+  port: 8511
+####服务名称
+spring:
+  application:
+    name: app-consul-order
+  cloud:
+    consul:
+      #### consul 端口号
+      host: localhost
+      port: 8500
+      ####表示服务的地址直接设置为端口号
+      discovery:
+        hostname: 192.168.50.73
+
+      ## 需要使用   127.0.0.1 192.168.18.220

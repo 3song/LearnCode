@@ -1,0 +1,7 @@
+#API网关号
+server:
+  port: 8084
+spring:
+  application:
+    name: springboot-swagger
+

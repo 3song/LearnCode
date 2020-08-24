@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/demo" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringBoot-Learn/springboot-Jsp" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringBoot-Web" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringBootLearn/springboot-jsp" />
+    <file type="web" url="file://$PROJECT_DIR$/XXL-Job/xxl-job-executor-samples/xxl-job-executor-sample-jfinal" />
+    <file type="web" url="file://$PROJECT_DIR$/XXL-Job/xxl-job-executor-samples/xxl-job-executor-sample-nutz" />
+    <file type="web" url="file://$PROJECT_DIR$/XXL-Job/xxl-job-executor-samples/xxl-job-executor-sample-spring" />
+    <type id="Spring" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/springboot-jsp/pom.xml" />
+        <option value="$PROJECT_DIR$/Redis-Learn/redis_jedis/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-ActiveMQ-Mail-P2P/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-First/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-Hystrix/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Thread-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/ThreadTest/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/ThreadCommunication/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/NewThreadsTest/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/JAVA-XML/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/JavaReturn/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/SpringIOC/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Auto-Annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/JavaMode/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Java-IO/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring/pom.xml" />
+        <option value="$PROJECT_DIR$/Redis-Learn/Redis-jedis/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Java-Class/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Java-List/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/SpringCloud-Config/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Java-Zookeeper/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-TimeTask/pom.xml" />
+        <option value="$PROJECT_DIR$/XXL-Job/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-Email/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/meite-shop-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/tx-lcn-2.0/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/Springboot-Mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-Redis/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-ES/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-CloudDisk/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-basics-springcloud-zuul/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-basics/meite-shop-basics-springcloud-eureka/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-basics/meite-shop-basics-springcloud-zuul/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-basics/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-common/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service-api/meite-shop-service-api-member/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service-api/meite-shop-service-api-order/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service-api/meite-shop-service-api-stock/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service-api/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service/meite-shop-service-member/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service/meite-shop-service-order/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service/meite-shop-service-stock/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/meite-shop-service/pom.xml" />
+        <option value="$USER_HOME$/Desktop/meite-shop-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/Access_Token/pom.xml" />
+        <option value="$PROJECT_DIR$/ActiveMQ-Learn/ActiveMQ-Practice/pom.xml" />
+        <option value="$PROJECT_DIR$/Java-Learn/Redis-Lock/pom.xml" />
+        <option value="$PROJECT_DIR$/OAuth2.0/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Email/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-ActiveMQ-Mail-P2P-Producer/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-First/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringBoot-Learn/SpringBoot-Swagger/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/SpringCloud-Config/SpringCloud-Config-Client/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/SpringCloud-Config/SpringCloud-Config-Server/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/SpringCloud-Config/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/SpringCloud-Feign-Member/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringCloud-Learn/pom.xml" />
+        <option value="$PROJECT_DIR$/meite-shop-parent/meite-shop-basics-springcloud-zuul/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://www.springframework.org/schema/" location="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$USER_HOME$/IdeaProjects/out" />
+  </component>
+</project>

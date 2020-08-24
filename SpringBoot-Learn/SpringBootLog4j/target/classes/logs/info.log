@@ -1,0 +1,232 @@
+[11:06:09:459] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting Application on DESKTOP-1VU0QUS with PID 9988 (E:\IdeaProjects\SpringBootLog4j\target\classes started by 10482 in E:\IdeaProjects)
+[11:06:09:546] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:655) - The following profiles are active: test
+[11:06:13:470] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92) - Tomcat initialized with port(s): 8090 (http)
+[11:06:13:480] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8090"]
+[11:06:13:481] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[11:06:13:483] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.33]
+[11:06:13:621] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[11:06:13:622] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284) - Root WebApplicationContext: initialization completed in 3893 ms
+[11:06:14:363] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.initialize(ExecutorConfigurationSupport.java:181) - Initializing ExecutorService 'applicationTaskExecutor'
+[11:06:14:777] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8090"]
+[11:06:14:803] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204) - Tomcat started on port(s): 8090 (http) with context path '/SpringBootLog4j'
+[11:06:14:807] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started Application in 6.115 seconds (JVM running for 9.258)
+[11:11:16:164] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[11:11:16:165] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[11:11:16:176] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 11 ms
+[11:11:16:230] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:11:16:230] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/getValue
+[11:11:16:230] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:11:16:231] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:11:16:237] [INFO] - com.controller.IndexController.getValue(IndexController.java:36) - 返回对象成功
+[11:11:16:238] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:application-test.properties
+[11:11:16:238] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:11:23:253] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:11:23:254] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:11:23:254] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:11:23:255] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:11:23:255] [INFO] - com.controller.IndexController.findAll(IndexController.java:30) - 返回对象成功
+[11:11:23:330] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - HikariPool-1 - Starting...
+[11:11:24:181] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - HikariPool-1 - Start completed.
+[11:11:24:371] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@6ef9361a, com.entity.Users@23adcf84, com.entity.Users@2bff96e0]
+[11:11:24:372] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:11:58:389] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:11:58:389] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:11:58:389] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:11:58:389] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:11:58:390] [INFO] - com.controller.IndexController.findAll(IndexController.java:30) - 返回对象成功
+[11:11:58:391] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@6ef9361a, com.entity.Users@23adcf84, com.entity.Users@2bff96e0]
+[11:11:58:391] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:12:20:720] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:12:20:720] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:12:20:720] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:12:20:720] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:12:20:720] [INFO] - com.controller.IndexController.findAll(IndexController.java:30) - 返回对象成功
+[11:12:20:723] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@6ef9361a, com.entity.Users@23adcf84, com.entity.Users@2bff96e0]
+[11:12:20:723] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:12:27:167] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:12:27:168] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:12:27:169] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:12:27:170] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:12:27:170] [INFO] - com.controller.IndexController.findAll(IndexController.java:30) - 返回对象成功
+[11:12:27:170] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@6ef9361a, com.entity.Users@23adcf84, com.entity.Users@2bff96e0]
+[11:12:27:170] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:12:39:781] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:12:39:781] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:12:39:781] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:12:39:782] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:12:39:783] [INFO] - com.controller.IndexController.findAll(IndexController.java:30) - 返回对象成功
+[11:12:39:783] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@6ef9361a, com.entity.Users@23adcf84, com.entity.Users@2bff96e0]
+[11:12:39:783] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:18:52:497] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting Application on DESKTOP-1VU0QUS with PID 8276 (E:\IdeaProjects\SpringBootLog4j\target\classes started by 10482 in E:\IdeaProjects)
+[11:18:52:501] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:655) - The following profiles are active: test
+[11:18:56:448] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92) - Tomcat initialized with port(s): 8090 (http)
+[11:18:56:455] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8090"]
+[11:18:56:456] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[11:18:56:457] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.33]
+[11:18:56:705] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[11:18:56:706] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284) - Root WebApplicationContext: initialization completed in 4161 ms
+[11:18:57:872] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.initialize(ExecutorConfigurationSupport.java:181) - Initializing ExecutorService 'applicationTaskExecutor'
+[11:18:58:155] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8090"]
+[11:18:58:175] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204) - Tomcat started on port(s): 8090 (http) with context path '/SpringBootLog4j'
+[11:18:58:179] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started Application in 6.043 seconds (JVM running for 7.392)
+[11:19:56:492] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[11:19:56:492] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[11:19:56:503] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 11 ms
+[11:19:56:527] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:19:56:527] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:19:56:528] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:19:56:528] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:19:56:534] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:19:56:568] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - HikariPool-1 - Starting...
+[11:19:57:141] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - HikariPool-1 - Start completed.
+[11:19:57:198] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@706b5cb6, com.entity.Users@4d7f8034, com.entity.Users@78b04310]
+[11:19:57:199] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:20:05:970] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:20:05:971] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:20:05:971] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:20:05:971] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:20:05:972] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:20:05:973] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@706b5cb6, com.entity.Users@4d7f8034, com.entity.Users@78b04310]
+[11:20:05:973] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:20:51:792] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting Application on DESKTOP-1VU0QUS with PID 7020 (E:\IdeaProjects\SpringBootLog4j\target\classes started by 10482 in E:\IdeaProjects)
+[11:20:51:796] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:655) - The following profiles are active: test
+[11:20:53:787] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92) - Tomcat initialized with port(s): 8090 (http)
+[11:20:53:795] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8090"]
+[11:20:53:796] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[11:20:53:797] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.33]
+[11:20:53:886] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[11:20:53:886] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284) - Root WebApplicationContext: initialization completed in 2055 ms
+[11:20:54:389] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.initialize(ExecutorConfigurationSupport.java:181) - Initializing ExecutorService 'applicationTaskExecutor'
+[11:20:54:645] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8090"]
+[11:20:54:665] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204) - Tomcat started on port(s): 8090 (http) with context path '/SpringBootLog4j'
+[11:20:54:668] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started Application in 3.201 seconds (JVM running for 5.076)
+[11:21:05:504] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[11:21:05:505] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[11:21:05:515] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 9 ms
+[11:21:05:536] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:21:05:537] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:21:05:538] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:21:05:539] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:21:05:544] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:21:05:576] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - HikariPool-1 - Starting...
+[11:21:06:148] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - HikariPool-1 - Start completed.
+[11:21:06:208] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@1e39ae3c, com.entity.Users@38a6865d, com.entity.Users@1e3b54ce]
+[11:21:06:209] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:21:21:941] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:21:21:942] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:21:21:943] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:21:21:943] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:21:21:943] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:21:21:944] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@1e39ae3c, com.entity.Users@38a6865d, com.entity.Users@1e3b54ce]
+[11:21:21:945] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:21:25:747] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:21:25:748] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:21:25:748] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:21:25:749] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:21:25:749] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:21:25:749] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@1e39ae3c, com.entity.Users@38a6865d, com.entity.Users@1e3b54ce]
+[11:21:25:750] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:21:36:192] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:21:36:192] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/removeKey
+[11:21:36:192] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:21:36:192] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:21:36:193] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:清理缓存success
+[11:21:36:193] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:21:41:736] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:21:41:737] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:21:41:737] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:21:41:738] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:21:41:738] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:21:41:738] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@1e39ae3c, com.entity.Users@38a6865d, com.entity.Users@1e3b54ce]
+[11:21:41:741] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:21:47:969] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:21:47:970] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:21:47:970] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:21:47:970] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:21:47:971] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:21:47:973] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@1e39ae3c, com.entity.Users@38a6865d, com.entity.Users@1e3b54ce]
+[11:21:47:973] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:22:34:096] [INFO] - org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55) - Starting Application on DESKTOP-1VU0QUS with PID 1772 (E:\IdeaProjects\SpringBootLog4j\target\classes started by 10482 in E:\IdeaProjects)
+[11:22:34:102] [INFO] - org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:655) - The following profiles are active: test
+[11:22:37:882] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92) - Tomcat initialized with port(s): 8090 (http)
+[11:22:37:893] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing ProtocolHandler ["http-nio-8090"]
+[11:22:37:894] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting service [Tomcat]
+[11:22:37:895] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting Servlet engine: [Apache Tomcat/9.0.33]
+[11:22:38:002] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring embedded WebApplicationContext
+[11:22:38:002] [INFO] - org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284) - Root WebApplicationContext: initialization completed in 3819 ms
+[11:22:38:503] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.initialize(ExecutorConfigurationSupport.java:181) - Initializing ExecutorService 'applicationTaskExecutor'
+[11:22:38:784] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8090"]
+[11:22:38:804] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204) - Tomcat started on port(s): 8090 (http) with context path '/SpringBootLog4j'
+[11:22:38:808] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61) - Started Application in 5.173 seconds (JVM running for 6.565)
+[11:22:53:594] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[11:22:53:595] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
+[11:22:53:603] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 7 ms
+[11:22:53:620] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:22:53:621] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:22:53:621] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:22:53:621] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:22:53:626] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:22:53:653] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110) - HikariPool-1 - Starting...
+[11:22:54:196] [INFO] - com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123) - HikariPool-1 - Start completed.
+[11:22:54:255] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@7ad087af, com.entity.Users@3e2259f4, com.entity.Users@7209ba53]
+[11:22:54:255] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:23:15:908] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:23:15:908] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:23:15:909] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:23:15:909] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:23:15:909] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:23:15:911] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@7ad087af, com.entity.Users@3e2259f4, com.entity.Users@7209ba53]
+[11:23:15:912] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:23:19:350] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:23:19:350] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/removeKey
+[11:23:19:350] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:23:19:350] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:23:19:351] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:清理缓存success
+[11:23:19:351] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:23:25:542] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:23:25:542] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:23:25:543] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:23:25:543] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:23:25:543] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:23:25:552] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@4b4b4fee, com.entity.Users@4f74c25f, com.entity.Users@a7645d5]
+[11:23:25:552] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:23:48:413] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:23:48:414] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/removeKey
+[11:23:48:414] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:23:48:414] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:23:48:415] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:清理缓存success
+[11:23:48:417] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:23:59:347] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:23:59:349] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:23:59:350] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:23:59:350] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:23:59:350] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:23:59:355] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@2c9de034, com.entity.Users@699f6bc3, com.entity.Users@632af21f]
+[11:23:59:355] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:24:24:298] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:24:24:299] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:24:24:300] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:24:24:300] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:24:24:300] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:24:24:300] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@2c9de034, com.entity.Users@699f6bc3, com.entity.Users@632af21f]
+[11:24:24:302] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:24:28:533] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:24:28:533] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:24:28:534] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:24:28:535] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:24:28:535] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:24:28:536] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@2c9de034, com.entity.Users@699f6bc3, com.entity.Users@632af21f]
+[11:24:28:536] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:24:31:834] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:24:31:834] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/removeKey
+[11:24:31:834] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:24:31:835] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:24:31:835] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:清理缓存success
+[11:24:31:836] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################
+[11:24:35:520] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:35) - #################################拦截到请求   请求开始############################################
+[11:24:35:520] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:37) - URL:/SpringBootLog4j/findAll
+[11:24:35:521] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:38) - HTTP_METHOD :GET
+[11:24:35:523] [INFO] - com.aop.WebLobAspect.doBefore(WebLobAspect.java:39) - IP:127.0.0.1
+[11:24:35:524] [INFO] - com.controller.IndexController.findAll(IndexController.java:33) - 返回对象成功
+[11:24:35:529] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:51) - RESPONSE:[com.entity.Users@6a59ba9a, com.entity.Users@5af94fcc, com.entity.Users@53b1eb9b, com.entity.Users@49bdcab5]
+[11:24:35:529] [INFO] - com.aop.WebLobAspect.doAfterReturn(WebLobAspect.java:52) - #################################拦截到请求   请求结束############################################

@@ -1,0 +1,33 @@
+#API网关号
+server:
+  port: 80
+spring:
+  application:
+    name: server-zuul
+#服务注册
+eureka:
+  instance:
+    #注册中心IP地址
+    hostname: 192.168.50.73
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8080/eureka/
+#zuul:
+#  routes:
+#    # api-a: 表示自定义转发规则
+#    api-member-a:
+#      #以/api-member/** 转发到会员服务 当客户端发送127.0.0.1:80/api-member 开头 都会转发到会员服务
+#      path: /api-member/**
+#      #服务别名 zuul默认整合Ribbon 自动实现负载均衡轮询效果 找eureka别名，本地实现转发请求 （负载均衡）
+#      serviceId: app-vip-member
+#    api-order-b:
+#      # 以/api-order/**访问转发到订单服务 当客户端发送127.0.0.1:80/api-order 开头 都会转发到会员服务
+#      path: /api-order/**
+#      #服务别名 zuul默认整合Ribbon 自动实现负载均衡轮询效果
+#      serviceId: app-com-order
+#开启所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

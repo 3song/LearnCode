@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    host: 192.168.50.73
+    username: admin
+    password: 211716
+    ##/ 表示所有主机
+    virtual-host: /admin_host
+    listener:
+      simple:
+        retry:
+          ##程序出现异常(默认情况)会自动重试
+          enabled: true
+          ##最大重试次数
+          max-attempts: 5
+          ##重试间隔时间
+          initial-interval: 3000
+          ###开启手动应答模式
+        acknowledge-mode: manual
+server:
+  port: 8081

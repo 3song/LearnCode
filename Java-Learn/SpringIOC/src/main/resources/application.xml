@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="users1" class="com.entity.Users">
+        <property name="id" value="0001"></property>
+        <property name="name" value="陈磊"></property>
+    </bean>
+    <bean id="users2" class="com.entity.Users">
+        <property name="id" value="0002"></property>
+        <property name="name" value="3song"></property>
+    </bean>
+</beans>

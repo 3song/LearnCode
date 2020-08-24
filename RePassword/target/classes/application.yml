@@ -1,0 +1,40 @@
+spring:
+  devtools:
+    restart:
+      enabled: false
+  mvc:
+    view:
+      # 页面默认前缀目录
+      prefix: /WEB-INF/jsp/
+      # 响应页面默认后缀
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://localhost:3306/access_token?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: 211716
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1 FROM DUAL
+    time-between-eviction-runs-millis: 300000
+    min-evictable-idle-time-millis: 1800000
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 211716
+    jedis:
+      pool:
+        max-idle: 8
+        max-active: 8
+        max-wait: 1
+        min-idle: 0
+    timeout: 5000
+domain: 
+ name: www.3song.com
+
+
+# 打印sql
+logging:
+  level:
+    com.app.mapper : debug

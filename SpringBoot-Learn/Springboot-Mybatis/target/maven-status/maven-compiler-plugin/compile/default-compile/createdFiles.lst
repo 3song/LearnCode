@@ -1,0 +1,14 @@
+com\pojo\Users.class
+com\pojo\UsersExample$Criteria.class
+com\pojo\UsersExample.class
+com\service\UserServiceImpl.class
+com\util\GeneratorDefault.class
+com\util\Generator.class
+com\Application.class
+com\users\mapper\UsersSqlProvider.class
+com\dao\UserDao.class
+com\controller\UserController.class
+com\users\mapper\UsersMapper.class
+com\pojo\UsersExample$Criterion.class
+com\pojo\UsersExample$GeneratedCriteria.class
+com\service\UserService.class

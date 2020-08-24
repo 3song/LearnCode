@@ -1,0 +1,51 @@
+#spring:
+#  redis:
+#    database: 0
+#    host: 127.0.0.1
+#    port: 6379
+#    password: 211716
+#    jedis:
+#      pool:
+#        max-idle: 8
+#        max-active: 8
+#        max-wait: 1
+#        min-idle: 0
+#    timeout: 5000
+
+
+#spring:
+#  redis:
+#    cluster:
+#      nodes:
+#        - ip:port #替换为正确的redis集群的IP和端口号
+#        - ip:port
+#        - ip:port
+#        - ip:port
+#        - ip:port
+#        - ip:port
+#      connectionTimeout: 6000
+#      soTimeout: 6000
+#      maxAttempts: 5
+#      password: password #写正确的密码
+
+
+spring:
+  redis:
+    cluster:
+      nodes:
+        - 192.168.200.8:7000
+        - 192.168.200.8:7001
+        - 192.168.200.9:7002
+        - 192.168.200.9:7003
+        - 192.168.200.10:7004
+        - 192.168.200.10:7005
+      max-redirects: 3  # 获取失败 最大重定向次数
+    pool:
+
+    timeout: 6000  # 连接超时时长（毫秒）
+    jedis:
+      pool:
+        max-idle: 1000
+        max-wait:
+        min-idle: 5
+        max-active: 8

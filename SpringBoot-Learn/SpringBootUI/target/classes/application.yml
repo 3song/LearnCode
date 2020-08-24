@@ -1,0 +1,26 @@
+spring:
+  thymeaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    mode: HTML5
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+server:
+  port: 8090
+  servlet:
+    context-path: /SpringBootUi
+#自定义的属性，指定了一个路径，注意要以/结尾
+web:
+  upload-path: E:/IdeaProjects/SpringBootUI/src/main/resources/upload/
+
+
+
+  #spring.resources.static-locations= classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+context-path: E:/IdeaProjects/SpringBootUI/src/main/resources/

@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    password: 211716
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/users?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:app_ehcache.xml
+
+
+
+#      ehcache:
+#        config: classpath:app_ehcache.xml

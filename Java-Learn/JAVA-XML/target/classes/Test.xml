@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+    <config id="config01">
+        <微信号>ladyKits</微信号>
+        <QQ号>1048253765</QQ号>
+        <地址>517号</地址>
+    </config>
+    <config id="config02">
+        <微信号>ladyKits</微信号>
+        <QQ号>1048253765</QQ号>
+        <地址>517号</地址>
+    </config>
+    <config id="config03">
+        <微信号>ladyKits</微信号>
+        <QQ号>1048253765</QQ号>
+        <地址>517号</地址>
+    </config>
+</Config>

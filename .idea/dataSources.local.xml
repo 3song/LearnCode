@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Springboot-Jpa/Hibernate" uuid="5763fef1-c440-421b-96c5-8bbf06fa9092">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="AZURE" exact-version="0" />
+      <user-name>UTF-8</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="Springboot-Template/Hibernate" uuid="3c675278-e8ac-4a8b-b3ad-cd228cf5ab07">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="AZURE" exact-version="0" />
+      <user-name>root</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

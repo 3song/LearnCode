@@ -1,0 +1,21 @@
+# web port
+server:
+  port: 8081
+# no web
+#spring.main.web-environment=false
+logging:
+  config: classpath:logback.xml
+xxl:
+  job:
+    admin:
+      ### xxl-job admin address list, such as "http://address" or "http://address01,http://address02"
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    accessToken:
+    executor:
+      ### xxl-job executor registry-address: default use address to registry , otherwise use ip:port if address is null
+      appname: xxl-job-executor-sample
+      address:
+      ip:
+      port: 9999
+      logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 30

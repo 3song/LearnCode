@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<script>
+    // 直接声明
+    function onClick(){
+        console.log("点击了按钮"+$("#name").val())
+        //let user={};
+        //user.name="123";
+        //user.age="123"
+        let users={"name":$("#name").val(),"age":$("#age").val()};
+        let name=$("#name").val().toString();
+        //users.age=$("#age").val();
+        // user={"name",name}
+        //console.log(arrUser)
+        //console.log("JSON.stringify(user)"+JSON.stringify(user))
+        console.log("{\"name\":\"123\"}"+{"name":"123"})
+        //console.log(JSON.stringify(user))
+        // dataType:"json",   //返回格式为json
+        // async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+        //let users=new Object();
+        //data:{"name":"123"},    //参数值
+        //data : {users:JSON.stringify(users)},
+        $.ajax({
+            url:"http://127.0.0.1:8080/userLogin",    //请求的url地址
+            contentType: 'application/json',
+            //data:{"name":$("#name").val(),"age":$("#age").val()},
+            data : JSON.stringify(users),
+            type:"POST",//请求方式
+            beforeSend:function(){
+                //请求前的处理
+               // console.log(JSON.stringify(arrUser))
+            },
+            success:function(req){
+                //请求成功时处理
+            },
+            complete:function(){
+                //请求完成的处理
+            },
+            error:function(){
+                //请求出错处理
+            }
+        });
+    }
+
+</script>
+<body>
+客户端登录页面
+<!--/*@thymesVar id="userCount" type="int"*/-->
+
+<h1>现在客户端一共有<p th:text="${userCount}"></h1>
+<input type="text" id="name"  value=""/>
+<input type="text" id="age" value=""/>
+<button type="button" value="登录" onclick="onClick();">登录</button>
+</body>
+</html>

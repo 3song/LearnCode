@@ -1,0 +1,22 @@
+###会员服务的端口号
+server:
+  port: 8082
+###服务别名----服务注册到注册中心的名称 serviceId
+spring:
+  application:
+    name: app-vip-member
+eureka:
+  instance:
+    #注册中心IP地址
+    hostname: 192.168.50.73
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8080/eureka/
+    #是否需要检索自己的服务信息（会员服务需要）
+    fetch-registry: true
+    #是否需要将自己注册给自己的注册中心（集群时需要为true）（会员服务需要）
+    register-with-eureka: true
+
+#整合Swagger 配置扫包范围
+swagger:
+  base-package: com.api.controller

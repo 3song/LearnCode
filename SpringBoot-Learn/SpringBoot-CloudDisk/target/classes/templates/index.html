@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>每特教育|蚂蚁课堂网盘搜索引擎</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body  style="display: block; margin: 0 auto; width: 50%; " >
+<div style="width:100%;height:60px;" align="center">
+    <h2 style="color:#985f0d;">每特教育|蚂蚁课堂网盘搜索引擎</h2>
+</div>
+<br/>
+<div align="center">
+    <span style="font-size: 18px;" >检索出<span th:text="${total}"></span>条数据,耗时:<span th:text="${time}"></span>毫秒</span>
+</div>
+<br/>
+<br/>
+<div class="bs-example" data-example-id="striped-table">
+<!--    <span th:if="${#strings.contains('${p.name}','${keyword}')}"></span>
+    <span th:text="${p.name}"></span>-->
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th style="text-align:center;" scope="row">链接名称</th>
+            <th style="text-align:center;">文件大小GB</th>
+            <th style="text-align:center;">分享人</th>
+            <th style="text-align:center;">云盘地址</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--<span th:text="${page.content}"></span>-->
+        <tr th:each="p:${page.content}" th:with="keyWord=${keyWord}">
+
+            <th style="text-align: left;" th:with="p1=${page.content[0].name}" >
+                <!--<span th:if="${#strings.containsIgnoreCase('${p.name}','${keyword}')}" th:text="${keyword}" ></span>-->
+                <span th:utext="${p1}" />
+               <!--<span  th:unless="${#strings.containsIgnoreCase('${p.name}','${keyword}')}" th:text="${#strings.replace('${p.name}','${keyWord}','<span style="color:red;" th:text="${keyWord}"></span>')}" ></span>-->
+            </th>
+            <th style="text-align: center;" th:text="${p.filesize}"></th>
+            <th style="text-align: center;" th:text="${p.sharePeople}"></th>
+            <th style="text-align: center;"><a th:href="${p.address}">云盘地址</a> </th>
+        </tr>
+        </tbody>
+    </table>
+    <div style="font-size: 21px;" th:with="totalPage=${totalPage}">
+        <span th:each="i:${#numbers.sequence(1,totalPage)}">
+            <!--@{/Controller/behavior(param1=1,param2=${person.id})}-->
+            <span th:if="${keyWord} != null">
+                <a th:href="@{'/page?page='+${iStat.index}}" th:text="${iStat.index+1}"></a>
+<!--                 <a th:href="@{/search(keyword=${keyword}&page=${iStat.index-1})}" th:text="${iStat.index}" ></a>-->
+            </span>
+            <span th:unless="${keyWord} != null">
+                <span th:text="${keyWord}"></span>
+                  <a th:href="@{'/page?page='+${iStat.index}}" th:text="${iStat.index+1}"></a>
+                  <!--<a th:href="/search?page=${iStat.index-1}" th:text="${iStat.index}" ></a>-->
+            </span>
+        </span>
+页
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--定义了提供方应用信息 (服务名)，用于计算依赖关系，在Dubbo-Admin和Dubbo-monitor 会显示这个名字，方便辨识-->
+    <dubbo:application name="member-provider" />
+    <!--使用zookeeper 注册中心暴露服务，开启对应的zookeeper-->
+    <dubbo:registry address="zookeeper://192.168.50.73:2181" />
+    <!--用dubbo协议在20080端口暴露服务-->
+    <dubbo:protocol name="dubbo" port="20800"/>
+    <!--使用dubbo协议实现定义好的api.PermissionService接口-->
+    <dubbo:service interface="com.lock.api.member.MemberService" ref="memberServiceImpl" protocol="dubbo" />
+    <!--具体实现该接口的Bean-->
+    <bean id="memberServiceImpl" class="com.lock.api.member.service.MemberServiceImpl"/>
+</beans>

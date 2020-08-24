@@ -1,0 +1,12 @@
+server:
+  port: 8082
+spring:
+  activemq:
+    ### mq连接通讯地址
+    broker-url: tcp://192.168.50.73:61616
+    ## 账号
+    user: admin
+    ## 密码
+    password: admin
+## 自定义队列
+my_queue: springboot-queue

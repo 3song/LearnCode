@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    cache: false
+    mode: html5
+    servlet:
+      content-type: text/html
+    encoding: UTF-8
+    suffix: .html
+    check-template-location: true
+    prefix: classpath:/templates/
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  devtools:
+    restart:
+      enabled: false
+
+#  host: 192.168.200.3
+#  port: 9200

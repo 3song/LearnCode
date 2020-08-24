@@ -1,0 +1,43 @@
+spring:
+  servlet:
+    multipart:
+      # 上传文件总的最大值
+      max-request-size: 10MB
+      # 单个文件的最大值
+      max-file-size: 10MB
+  resources:
+    static-locations: /META-INF/resources/,classpath:/resources/, classpath:/static/,classpath:/public/
+  mvc:
+    static-path-pattern: /**
+    view:
+      prefix: /jsp/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://localhost:3306/users?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 211716
+  redis:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 1
+        min-idle: 1
+        max-idle: 8
+    timeout: 1500
+    database: 0
+    host: 192.168.50.73
+    port: 6379
+    password: 211716
+server:
+  port: 8080
+
+mybatis:
+  # spring boot集成mybatis的方式打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.mapper: debug
+#定义当前域名
+domain.name: 192.168.50.73:8080

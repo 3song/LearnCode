@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: 192.168.50.73
+    username: admin
+    password: 211716
+    ##/ 表示所有主机
+    virtual-host: /admin_host
