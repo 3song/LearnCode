@@ -1,0 +1,82 @@
+instanceof 严格来说是Java中的一个双目运算符，用来测试一个对象是否为一个类的实例，用法为：
+boolean result = obj instanceof Class
+其中 obj 为一个对象，Class 表示一个类或者一个接口，当 obj 为 Class 的对象，或者是其直接或间接子类，或者是其接口的实现类，结果result 都返回 true，否则返回false。
+注意：编译器会检查 obj 是否能转换成右边的class类型，如果不能转换则直接报错，如果不能确定类型，则通过编译，具体看运行时定。
+
+输入流和输出流的区别：
+输入输出的方向是针对程序而言，向程序中读入数据，就是输入流；从程序中向外写出数据，就是输出流
+从磁盘、网络、键盘读到内存，就是输入流，用 InputStream 或 Reader
+写到磁盘、网络、屏幕，都是输出流，用 OuputStream 或 Writer
+
+throwable和exception的区别：
+	1、throwable是父类，exception是子类。
+	2、throwable是根基，exception是从throwable派生出来的。
+	3、throwable中包括exception（异常）和error（错误）。
+	4、throwable用来定义所有可以作为异常被抛出来的类，exception专指程序本身可以处理的异常，一般性的异常。
+在Java程序中，所有异常对象的根基类是Throwable，Throwable从Object直接继承而来（这是Java系统所强制要求的）。Throwable有两个重要的子类：Exception（异常）和 Error（错误），二者都是 Java 异常处理的重要子类，各自都包含大量子类。
+扩展资料：
+Error（错误）是程序无法处理的错误，表示运行应用程序中较严重问题。大多e69da5e887aae799bee5baa631333366303230数错误与代码编写者执行的操作无关，而表示代码运行时 JVM（Java 虚拟机）出现的问题。Exception（异常）是程序本身可以处理的异常。
+Error是一种严重的问题，应用程序不应该捕捉它。 Exception一般可能是程序和业务上的错误，是可以恢复的。
+c语言编程中count++与++count的区别
+有个口诀，方便记忆，++在前先加，意思就是先+1再赋值，比如i=++j,相当于j=j+1;i=j,++在后后加，意思是先赋值后+1，比如i=j++,相当于语句i=j;j=j+1;
+int和Integer的区别
+	1、Integer是int的包装类，int则是java的一种基本数据类型 
+	2、Integer变量必须实例化后才能使用，而int变量不需要 
+	3、Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此对象；而int则是直接存储数据值 
+	4、Integer的默认值是null，int的默认值是0
+Java八种基本类型及其包装类总结
+原始类型 包装类	原始类型所占的字节数  
+short 	Short  		2个字节
+int 	Integer 	4个字节
+long 	Long 		8个字节
+float 	Float 		4个字节
+double 	Double 		8个字节
+byte 	Byte 		1个字节
+char 	Character 	2个字节
+boolean Boolean 这个试编译环境而定
+八种类型默认值 
+基本类型 默认值
+byte 0
+int 0
+short 0 
+long 0L
+double 0.0d
+float 0.0f
+char '\u0000'
+boolean false
+
+枚举类
+	不能被实现，也不能被继承
+	在第一行必须定义好实例； 才能定义方法；
+枚举的作用
+	单例模式：即使构造函数私有，也可以通过java反射获取到当前类对象实例，实例不完美，而使用枚举，就可以解决这个问题；
+
+什么叫懒加载、懒加载有什么作用？
+懒加载其实就是延时加载，即当对象需要用到的时候再去加载。
+----- 概括
+什么叫做需要用到的时候？比如说一个对象被创建出来就需要一笔内存开支，如果接下来就没有其他的操作（比如NAMutableArray对象还没有被存放数据；UIView对象还没有被显示出来），那可以认为这个对象创建得|“过早”了。
+
+那如何使用懒加载呢？自从点语法出现以后，访问一个对象基本就类似于self.clickBtn或者是[self clickBtn]，这都是调用的clickBtn的getter方法，因此就可以在getter方法中实现懒加载。
+
+因此，懒加载其实就是所谓的重写对象的getter方法，当系统或者开发者调用对象的getter方法时，再去加载对象。需要注意的是：重写getter方法时，先判断对象当前是否为空，为空的话再去实例化对象。
+
+懒加载的优点：
+
+1. 不需要将对象的实例化全部写到viewDidLoad中，可以简化代码，增强代码的可读性
+
+2. 对象的实例化在getter方法中，各司其职，降低耦合性
+
+3. 对系统的内存占用率会减少
+
+泛型与Object类型区别
+
+由此可见，使用泛型，有2个好处：
+1.不需要做强制类型转换
+2.编译时更安全。如果使用Object类的话，你没法保证返回的类型一定是Foo，也许是其它类型。这时你就会在运行时得到一个类型转换异常（ClassCastException）
+缺点：
+由于泛型是在运行时才决定类型，所以不能通过反射机制获取对象，可以通过字节码技术获取
+
+修饰符：可选参数，用于指定类的访问权限，可选值为public、abstract和final。
+类名：必选参数，用于指定类的名称，类名必须是合法的Java标识符。一般情况下，要求首字母大写。
+extends 父类名：可选参数，用于指定要定义的类继承于哪个父类。当使用extends关键字时，父类名为必选参数。
+implements 接口列表：可选参数，用于指定该类实现的是哪些接口。当使用implements关键字时，接口列表为必选参数。当接口列表中存在多个接口名时，各个接口名之间使用逗号分隔。

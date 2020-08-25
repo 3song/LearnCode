@@ -1,0 +1,41 @@
+Java字节码技术
+
+死锁产生原因：同步中嵌套同步，互相不释放锁
+
+枚举类是什么？？？？
+
+什么是字节码技术：字节码技术对类的基本信息做操作，新增属性和方法、类、修改属性和方法、删除属性和方法 lombok 注解生成GetSet实体类方法
+
+
+0015-(每特教育&每特学院&蚂蚁课堂)-3期
+ClassPool pool = ClassPool.getDefault();
+            //读取Users类
+            CtClass usersClass = pool.get("com.entity.Users");
+            // CtMethod.make() 也能做到
+            CtMethod sumMethod = new CtMethod(CtClass.voidType, "sum",new CtClass[]{CtClass.intType,CtClass.intType},usersClass);
+            //CtMethod toString = new CtMethod(CtClass.voidType, "toString",new CtClass[]{}, usersClass);
+            //添加sumMethod 方法 $0 表示this
+            sumMethod.setBody("{System.out.println(\"sum:\"+($1+$2));}");
+            //添加方法
+            usersClass.addMethod(sumMethod);
+            //生成Class文件
+            usersClass.writeFile("E:/IdeaProjects/Java-Learn/Java-Class/src/main/resources");
+            //动态执行生成的字节码的方法
+            Class aClass=usersClass.toClass();
+            Object o= aClass.newInstance();
+            Method method=aClass.getDeclaredMethod("sum", int.class,int.class);
+            method.invoke(o, 9,9);
+
+类加载器
+	jvm执行java编译之后的class文件。
+类加载过程：
+	加载Class文件：
+	验证：
+	准备：
+	解析：
+	初始化：
+类加载机制：
+	将class文件字节码加载到内存中，并将这些静态数据转换成方法区中的运行时数据结构，在堆内存中生成一个java.lang.Class对象，作为方法区（永久区）类数据的访问入口，整个过程需要类加载器参与
+	当初始化一个类时，如果其父类没有初始化，则父类首先初始化
+	static静态代码块 优先于构造函数执行 
+	静态函数只会初始化一次

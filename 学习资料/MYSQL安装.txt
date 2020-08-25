@@ -1,0 +1,189 @@
+MYSQL安装方法   
+1.下载安装包
+
+2、安装
+
+2.1 解压zip包到安装目录
+
+我的解压在了 E:\SQL\MySQL\mysql-8.0.16-winx64
+
+ps：解压后的文件目录，缺失data文件夹和my.ini配置文件，
+
+将解压后的 bin 路径添加到环境变量 path 里面
+
+2.2 配置初始化的my.ini文件
+
+注意：在文件夹扩展名一定要打开
+
+在安装根目录下添加 my.ini（新建文本文件，将文件类型改为.ini），写入基本配置：
+
+----------------------------------------------------------
+[mysqld]
+# 设置3306端口
+port=3306
+ 
+# 设置mysql的安装目录
+basedir=E:\SQL\MySQL\mysql-8.0.16-winx64 # 根据自己的地址更改
+ 
+# 设置mysql数据库的数据的存放目录
+datadir=E:\SQL\MySQL\mysql-8.0.16-winx64\data # 根据自己的地址更改
+ 
+# 允许最大连接数
+max_connections=200
+ 
+# 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统
+max_connect_errors=10
+ 
+# 服务端使用的字符集默认为UTF8
+character-set-server=utf8
+ 
+# 创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+ 
+# 默认使用“mysql_native_password”插件认证
+default_authentication_plugin=mysql_native_password
+ 
+[mysql]
+# 设置mysql客户端默认字符集
+default-character-set=utf8
+ 
+[client]
+# 设置mysql客户端连接服务端时默认使用的端口
+port=3306
+default-character-set=utf8
+---------------------------------------------------
+2.3 新建 data目录
+
+
+3、安装mysql
+
+在安装时，必须以管理员身份运行cmd，否则在安装时会报错，会导致安装失败的情况
+
+3.1 初始化数据库
+
+在MySQL安装目录的 bin 目录下执行命令：
+
+mysqld --initialize --console
+执行完成后，会打印 root 用户的初始默认密码
+
+红色是密码，一定要复制到其他地方待用，不然你就要重来了
+
+
+
+3.2 安装服务
+
+在MySQL安装目录的 bin 目录下执行命令：
+
+1
+mysqld --install [服务名] # 后面的服务名可以不写，默认的名字为 mysql。
+安装完成之后：
+
+通过命令 net start mysql 启动MySQL服务
+
+通过命令 net stop mysql 停止MySQL服务
+
+如果之前需要卸载之前的 mysql，可以通过命令 sc delete MySQL / mysqld -remove 卸载 MySQL 服务
+
+ 4、更改密码
+
+在MySQL安装目录的 bin 目录下执行命令：
+
+mysql -u root -p
+这时候会提示输入密码，记住了上面第 3.1 步安装时的密码，填入即可登录成功，进入MySQL命令模式。
+
+如果刺入报此类错误：
+
+Enter password: ************
+ERROR 2003 (HY000): Can't connect to MySQL server on 'localhost' (10061)
+win + r 输入 services.msc 启动 mysql 服务
+
+至此就安装完毕；
+
+在MySQL中执行命令：
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '211716';
+
+修改密码，注意命令尾的；一定要有，这是mysql的语法
+
+操作无误会提示你  “Query OK, 0 rows affected (0.01 sec)”
+
+输入 ‘\t' 推出 mysql， 也可输入 help 选择帮助
+
+
+mongod.exe ‐‐config "E:\mongodb-win32-x86_64-2012plus-4.2.5\mongo.conf" ‐‐install
+
+   mongod --dbpath "E:\mongodb-win32-x86_64-2012plus-4.2.5\data" --logpath     "E:\mongodb-win32-x86_64-2012plus-4.2.5\logs\mongodb.log" --install --serviceName "MongoDB"
+
+
+
+Linux Mysql 
+
+
+
+/usr/sbin/mysqld --user mysql --basedir /var/lib/mysql --datadir /var/lib/mysql/data --initialize
+rpm -ev mysql-libs-5.1.71-1.el6.x86_64 --nodeps
+
+mysqld --initialize
+1
+启动 MySQL：
+
+service mysqld start
+1
+查看 MySQL 运行状态：
+
+service mysqld status
+
+
+mysql -uroot -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY '211716';
+rpm -ivh mysql-community-libs-8.0.20-1.el6.x86_64.rpm
+rpm -ivh mysql-community-common-8.0.20-1.el6.x86_64.rpm
+rpm -ivh mysql-community-client-8.0.20-1.el6.x86_64.rpm
+rpm -ivh mysql-community-server-8.0.20-1.el6.x86_64.rpm
+
+
+mysql -u root -p
+
+mysql>use mysql;
+
+mysql>select host from user where user='root';
+
+mysql>update user set host = '%' where user ='root';
+
+mysql>flush privileges;
+
+mysql>select host from user where user='root';
+
+第一句是以权限用户root登录
+
+第二句：选择mysql库
+
+第三句：查看mysql库中的user表的host值（即可进行连接访问的主机/IP名称）
+
+第四句：修改host值（以通配符%的内容增加主机/IP地址），当然也可以直接增加IP地址
+
+第五句：刷新MySQL的系统权限相关表
+
+第六句：再重新查看user表时，有修改。。
+
+记得Mysql服务需要重新启动（确保修改有效-service mysql restart），否则可能修改的结果无法体现。
+
+mycat
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '211716' PASSWORD EXPIRE NEVER;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码'
+
+
+mysql -uroot -p -h127.0.0.1 -P8066 -DTESTDB --default_auth=mysql_native_password
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456' PASSWORD EXPIRE NEVER;
+
+
+Navicat 授权外部ip登录
+ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '211716' WITH GRANT OPTION;
+
+        FLUSH   PRIVILEGES;

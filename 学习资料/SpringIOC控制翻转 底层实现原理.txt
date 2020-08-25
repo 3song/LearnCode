@@ -1,0 +1,7 @@
+SpringIOC控制翻转 底层实现原理 DOM4j 解析xml+java反射机制
+1.解析XML配置
+2.使用beanId查找对应xml节点，获取Class属性
+3.使用java反射机制初始化类
+4.使用java反射机制给私有成员赋值
+
+反射机制缺点

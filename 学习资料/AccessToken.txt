@@ -1,0 +1,19 @@
+AccessToken
+	
+如何保证他人调用我方外网接口的安全性？
+	1.搭建API网关控制接口访问权限
+	2.开放平台设计oauth2.0协议（安全认证） QQ授权，第三方联合登陆（保证系统安全性）
+	3.采用Https传输协议防止抓包请求（使用Nginx配置Https证书）
+	4.API接口数字签名（接口加签）md5（单向加密）非对称加密（RSA公钥私钥互换） 防止抓包请求
+	5.实现基于Token令牌方式实现Api接口调用。微信开发
+
+1.需求 A需要调用B服务器的接口
+	基于令牌（Token）方式实现：
+		使用AppId+AppSccret 生成对应的Access_token
+		AppId：区分不同的第三方合作机构（不能改变）
+		AppSecret：在传输中实现加密功能（秘钥）可以发生改变
+			表字段：APP_Name 机构名称
+				AppId 应用Id
+				AppSecret 应用秘钥 （可更改）
+				Is_Flag 是否可用（是否对某个机构开放）
+				access_token 上一次Token的值

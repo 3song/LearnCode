@@ -1,0 +1,67 @@
+Spring 基础
+Spring是什么 ：Spring 是一个容器，管理每个bean(对象)与bean之间的关系。可以使用Spring 进行事务管理，任何对象初始化过程，全部都要交给Spring管理，由Spring 注入属性
+Spring 核心技术 
+	SpringIOC 控制反转
+	原理：xml解析 解析配置文件 使用反射机制 去创建对象
+		三层架构：控制层---Web、业务逻辑层----service、数据访问层-----dao
+		优点：应用间解耦、单例：容器中只创建一个对象达到代码复用（节约内存）
+		缺点：只创建一个对象可能导致线程不安全
+	DI 依赖注入：解决对象之间的依赖
+	AOP 面向切面编程
+		AOP的实现原理
+			那Spring中AOP是怎么实现的呢？Spring中AOP的有两种实现方式：
+			1、JDK动态代理
+			2、Cglib动态代理
+	Spring 事务/传播行为
+Spring 对象默认是单例的。
+Spring作用域有几种：
+	4种：request session 
+	prototype 多例  singleton 每次调用getBean创建对象 都会重新new一个对象  
+	单例 每次调用getBean创建对象 只会new一个对象重复使用 Spring并不会出现线程安全问题。因为Spring单例 使用饿汉式单例
+	应使用双重验证锁。 Spring使用饿汉式
+SpringIOC创建对象的方式：
+	调用无参构造器（默认使用）
+	调用有参构造器
+		<bean>
+			<!--有参构造 参数必须对应实体类的参数数量-->
+			<constructor-arg name="name" value="陈磊"></constructor-arg>
+        	<constructor-arg name="age" value="25"></constructor-arg>
+		</bean>
+	使用工厂模式创建对象
+		静态方法创建对象
+		非静态方法创建对象
+Spring DI(依赖注入)：
+	1.通过构造函数注入
+	2.使用Set方法注入
+		<bean id="userDao" class="com.dao.UserDao"></bean>
+	    <bean id="userService" class="com.service.UserService">
+	    	<!--被引用方需要创建GetSet方法 -->
+	        <property name="userDao" ref="userDao"></property>
+	    </bean>
+	3.Spring 3.0之后 可以在UserServiceBean标签内使用 p:userDao-ref="userDao" 直接引用userDao 无需加<property></property>
+	4.注解注入
+		<!--扫包范围 就可以使用注解配置 @service @Component @Controller-->
+    	<context:component-scan base-package="com"></context:component-scan>
+    	@Component, @Service, @Controller, @Repository是spring注解，注解后可以被spring框架所扫描并注入到spring容器来进行管理 
+		@Component是通用注解，其他三个注解是这个注解的拓展，并且具有了特定的功能 
+		@Repository注解在持久层中，具有将数据库操作抛出的原生异常翻译转化为spring的持久层异常的功能。 
+		@Controller层是spring-mvc的注解，具有将请求进行转发，重定向的功能。 
+		@Service层是业务逻辑层注解，这个注解只是标注该类处于业务逻辑层。 
+		用这些注解对应用进行分层之后，就能将请求处理，义务逻辑处理，数据库操作处理分离出来，为代码解耦，也方便了以后项目的维护和开发。
+		@Autowired 和 @Resource区别？******面试题
+		@Autowired 默认以类型查找  容易造成类名相同，找到两个Spring同名对象 Bean标签中的userDao和类名的UserDao对象冲突，@Autowired(false) 时 需要加@Qualifier("userDao") 表示按名称查找标记为@Repository(name="userDao") 的类
+		@Resource 是Jdk1.6新增属性 默认以名称查找  @Repository(name="userDao")
+什么是代理设计模式：代理对象中调用被代理对象中的相同方法。
+分为静态代理和动态代理：
+区别：静态代理需要生成代理类的对象调用类的方法实现代理
+动态代理：不需要生成代理类，分为Jdk动态代理和Cglib动态代理 ，jdk动态代理使用反射机制 ，cglib使用代理类的字节码文件（class）
+Spring AOP：底层使用代理设计模式中的动态代理
+什么是Spring的AOP ：面向切面编程----应用场景：权限控制，事物管理，日志打印（定义切入点，请求前、请求后打印日志）
+在项目中什么地方使用Aop，代码重复 不使用aop的话 权限控制相当于每次都要判断对象 ，在每次请求打印对象，会造成代码冗余
+在不同的方法中，进行相同的操作（判断权限，打印日志）
+关注点：重复代码
+切面：抽取的重复代码
+切入点：
+	拦截那些方法、从哪里开始拦截
+使用方式:1.XML方式---------- <aop:config></aop:config> 配置
+ 		2.注解方式----------@Aspect 定义切面

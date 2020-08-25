@@ -1,0 +1,11 @@
+CMD操作
+1. 打开cmd，输入
+netstat -ano|findstr "80"
+他可以找到占用80端口的进程。
+
+你甚至可以通过他的对应的 pid序列号（最后一列） 找到该进程的名字
+
+tasklist|findstr "9560"
+
+2.结束进程
+taskkill /pid 9560 -t -f

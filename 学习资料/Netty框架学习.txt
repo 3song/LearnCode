@@ -1,0 +1,23 @@
+Netty框架学习
+
+Netty产生背景：
+	为了解决传统NIO非阻塞代码Bug（遍历空Iterator）、而且代码过多，不够灵活，Netty进行了代码封装（通过事件驱动）
+
+
+Netty是一个异步通讯框架（NIO也是通讯框架WebSocket也是）、异步非阻塞、高可用（用重试机制（容错机制））、事件驱动、高可定制性。
+
+Netty应用场景：
+	RPC远程调用框架，Dubbo底层通过Netty框架实现，Netty底层是由NIO实现。
+	SpringCloud 是通过HTTP协议通讯
+
+为什么要使用Netty？
+	首先解决NIO代码复杂问题、有容错机制
+
+tcp中粘包（将多个包合在一起）、拆包（将一个包拆分成多个包）
+	粘包：降低服务器端压力
+不想粘包怎么实现
+	1.定义长度
+		ch.pipeline().addLast(new FixedLengthFrameDecoder(10));//定长
+	2.分隔符
+	
+	3.定义消息体

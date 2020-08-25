@@ -1,0 +1,65 @@
+IDEA快捷键   
+
+
+补全变量名 ctrl+shift+space
+
+1. main函数：
+
+输入public static void main的首字母：psvm  然后按tab或者enter，就会写好main方法   
+
+2. 输出语句：
+
+System.out.print(); 键入：sout
+
+3. for循环：
+
+   输入： fori
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.print("Hello World111");
+ 
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i);
+        };
+    }
+}
+ public static void main(String[] args) {
+        System.out.print("Hello World111");
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i);
+        };
+    }
+}
+
+一键删除没有 的包，导入缺失的包:ctrl + alt + o
+
+查找接口的实现类：
+
+IDEA 风格 ctrl + alt +B
+
+ 
+
+IDEA快速实现接口快捷方式
+
+ALT +INSERT
+
+pom.xml中 Alt+insert按键 选择dependency  查maven jar包
+
+选中要包围的代码块
+
+按下Ctrl+Alt+t
+
+快捷添加try catch
+
+
+TabPane tabPane = new 
+按下
+Ctrl+ALT+空格键
+TabPane tabPane = new TabPane();
+
+
+ctrl+H 查看接口实现类
+
+shift 两下  搜索类

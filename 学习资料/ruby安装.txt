@@ -1,0 +1,49 @@
+linux小白用户推荐我的这篇文章，升级ruby https://blog.csdn.net/tangyaliang11/article/details/80838489
+
+在centos7中默认ruby是2.0.0版本，低于redis4.0.6最低的最低要求的2.2版本，所以需要进行升级。
+
+#我的升级办法是将自带的ruby卸载，在安装可以支持redis的版本。
+
+#卸载ruby
+
+$ yum remove ruby
+
+#下载
+
+$ wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz
+
+#解压
+
+$ tar -zxvf ruby-2.5.0.tar.gz
+
+#进入目录
+
+$ cd ruby-2.5.0
+
+#创建安装目录
+
+$ mkdir -p /usr/local/ruby
+
+#配置并制定安装位置
+
+$ ./configure --prefix=/usr/local/ruby
+
+ ./configure && make && make install
+
+#编译与安装，这个过程很慢，你可以去吃顿饭或者抽一盒烟
+
+$ make && make install 
+
+#建立软链接  
+
+使用命令ln -s 文件所在位置 目的位置   
+命令这么写。（ln -s /usr/local/ruby/bin/ruby /usr/local/bin/ruby) 
+ln -s /usr/local/ruby/bin/ruby /usr/bin/ruby
+是LN 不是in 
+#查看ruby版本
+
+$ ruby -v
+
+完成！！！！！！！！！！！
+
+./redis-cli --cluster create --cluster -replicas 1 192.168.200.3:7000 192.168.200.3:7001 

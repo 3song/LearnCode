@@ -1,0 +1,23 @@
+Oauth2.0权限认证
+
+Oauth2.0应用场景：互联网API开放平台、蚂蚁金服、微信公众号管理平台授权、腾讯第三方联合登录、授权管理（QQ联合登录、微信联合登录）
+
+为什么产生Oauth2.0产生原因：
+	在互联网开放平台中、接口相互调用保证安全性问题
+
+Oauth2.0权限认证步骤
+	1.在微信开放平台申请对应的appid信息
+	2.在该网站生成授权连接
+	3用户在确认微信登录之后，跳转回回调地址（设置权限）
+	4.获取授权码code，使用授权码获取对应Access_token （调用腾讯接口权限）
+	5.使用access_token + openId 获取用户相关信息 （openid 表示开放Userid）
+
+Oauth2.0权限认证原理
+	appid appsecret access_token openid 回调地址 授权地址
+
+如何实现联合登录
+	设计表中：
+	userid
+	username
+	userpassowrd
+	wechatopenid ---保存微信公开userid字段 

@@ -1,0 +1,93 @@
+SpringCloud 使用Swagger生成API
+
+Swagger 背景  ：
+	为了前后端更好的集成与对接，同时也为了方便项目的交付 ，每个项目都需要提供相应的API文档
+	来源：PC端 移动端 微信端 
+传统API文档编写缺点
+	1.API的更新需要通知前端人员，导致文档更新不及时，API接口返回信息不明确
+	2.缺乏在线接口测试，通常需要使用API测试工具，postman,SoapUI 等。
+	3.接口文档太多，不便管理。
+为了解决传统API接口文档维护问题，为了方便进行测试后台RestFul接口并实现动态的更新，所以引入了SwaggerAPI工具。
+
+Swagger2 注解
+@Api：用在请求的类上，表示对类的说明
+    tags="说明该类的作用，可以在UI界面上看到的注解"
+    value="该参数没什么意义，在UI界面上也看到，所以不需要配置"
+
+例：@Api(tags="APP用户注册Controller")
+
+@ApiOperation：用在请求的方法上，说明方法的用途、作用
+    value="说明方法的用途、作用"
+    notes="方法的备注说明"
+
+例：@ApiOperation(value="用户注册",notes="手机号、密码都是必输项，年龄随边填，但必须是数字")
+
+@ApiImplicitParams：用在请求的方法上，表示一组参数说明
+    @ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面
+        name：参数名
+        value：参数的汉字说明、解释
+        required：参数是否必须传
+        paramType：参数放在哪个地方
+            · header --> 请求参数的获取：@RequestHeader
+            · query --> 请求参数的获取：@RequestParam
+            · path（用于restful接口）--> 请求参数的获取：@PathVariable
+            · body（不常用）
+            · form（不常用）    
+        dataType：参数类型，默认String，其它值dataType="Integer"       
+        defaultValue：参数的默认值
+
+例：@ApiImplicitParams({
+    @ApiImplicitParam(name="mobile",value="手机号",required=true,paramType="form"),
+    @ApiImplicitParam(name="password",value="密码",required=true,paramType="form"),
+    @ApiImplicitParam(name="age",value="年龄",required=true,paramType="form",dataType="Integer")
+})
+
+@ApiResponses：用在请求的方法上，表示一组响应
+    @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息
+        code：数字，例如400
+        message：信息，例如"请求参数没填好"
+        response：抛出异常的类
+
+例：@ApiOperation(value = "select1请求",notes = "多个参数，多种的查询参数类型")
+	@ApiResponses({
+    	@ApiResponse(code=400,message="请求参数没填好"),
+    	@ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+	})
+
+@ApiModel：用于响应类上，表示一个返回响应数据的信息
+            （这种一般用在post创建的时候，使用@RequestBody这样的场景，
+            请求参数无法使用@ApiImplicitParam注解进行描述的时候）
+    @ApiModelProperty：用在属性上，描述响应类的属性
+例：import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
+
+@ApiModel(description= "返回响应数据")
+public class RestMessage implements Serializable{
+
+    @ApiModelProperty(value = "是否成功")
+    private boolean success=true;
+    @ApiModelProperty(value = "返回对象")
+    private Object data;
+    @ApiModelProperty(value = "错误编号")
+    private Integer errCode;
+    @ApiModelProperty(value = "错误信息")
+    private String message;
+
+    /* getter/setter */
+}
+
+在微服务中，Swagger是每个服务（比如会员服务，支付服务，订单服务）都会集成，那么如何将整个微服务中的Swagger文档进行合成在同一台服务上？
+	两种方式：
+		1.使用Zuul+Swagger实现管理整个微服务API文档。
+		2.使用Nginx+Swagger以项目不同来区分跳转不同的接口文档。
+SpringBoot支持对Swagger管理，只需要添加Zuul网关，添加对应服务Swagger文档即可。
+订单服务和 会员服务 都需要引入POM依赖
+<!-- https://mvnrepository.com/artifact/com.spring4all/swagger-spring-boot-starter -->
+<dependency>
+    <groupId>com.spring4all</groupId>
+    <artifactId>swagger-spring-boot-starter</artifactId>
+    <version>1.9.1.RELEASE</version>
+</dependency>
+

@@ -1,0 +1,58 @@
+SpringCloud Config 分布式配置文件中心
+
+为什么要使用分布式配置中心?
+	在微服务如果使用传统方式管理配置文件，那么配置文件管理起来非常复杂（因为服务过多，配置文件也会过多）
+	如果生产环境配置文件需要发生改变的时候，需要重新打war包，并重新读取配置文件信息在jvm内存中。
+
+什么是分布式配置文件中心
+	在微服务中使用同一个服务器管理所有的服务配置文件信息，能够实现后台可管理配置文件,当服务器正在运行的时候，如果配置文件需要发生改变，可以实现不需要重启服务器实时更改配置文件信息。
+
+SpringCloud分布式配置中心原理
+	分布式配置中心需要实现哪些组件？
+	web管理系统 分布式配置文件管理器---后台使用图形界面管理配置文件  SpringCloudConfig 没有图形化管理配置文件
+	存放分布式配置文件服务器（文件持久存放）----使用版本控制器git存放配置文件信息
+	ConfigServer缓存配置文件服务器（临时缓存存放）
+	ConfigClient读取ConfigServer配置文件信息
+	git 上存放我们的远程配置文件 
+		config-server 连接到 git 
+		config-client 连接到config-server 
+		当我们启动config-client 服务的时候，client 会通过连接的 config-server 拿到远程git 上面的配置文件，然后通过 Spring 加载到对象中。 
+SpringCloudConfig 搭建步骤
+	1.搭建git环境---目的：持久化存储配置文件信息 采用github github上以项目区分配置文件
+		member-config 会员服务配置文件
+		order-confog 订单服务配置文件
+	2.公司项目中环境如何划分
+		dev 开发环境
+		sit 测试环境
+		pre 预发布环境
+		prd 预生产环境
+		uat 验收环境
+	2.在git环境上如何存放配置文件
+		1.在git环境上创建配置文件名称规范
+     		服务名称-环境.properties/yml --- member-dev.properties
+     		2020-05-19 18:50:44.769  WARN 328 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/test-configclient/sit": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+
+如何把配置文件存入到github上
+分布式配置中心框架对比：
+	Appllo 阿波罗  携程写的分布式配置中心 有图形界面的可管理的配置中心,配置文件存放在数据库中。
+	SpringConfig 没有后台可管理分布式配置中心，配置文件信息存放在版本控制器里面（git/svn）
+	Zookeeper实现分布式配置中心，持久节点+事件监听和通知
+	DisConf:依赖于Zookeeper
+	Redis
+
+SpringCloud把微服务所有的解决问题方法都整合起来：
+	1.分布式配置中心
+	2.分布式锁
+	3.分布式任务调度平台
+	4.分布式事务
+	5.分布式日志收集
+
+SpringConfig 配置中心
+	********配置文件名称 是bootstrap.yml
+	需要在使用配置文件的Controller 上加@RefreshScope注解
+	读取名称 ：spring:application:name: test-configclient  + 读取环境 spring:cloud:config:profile: sit 
+	1.默认情况下不能实时变更配置文件信息。
+	2.SpringCloud分布式配置中心 可以采用手动刷新或者自动刷新
+		手动刷新---需要人工调用接口，获取最新配置文件(监控中心)   调用接口为http://localhost:8082/actuator/refresh
+		自动刷新---由消息总线进行实时通知   SpringBus----消息总线 相当于对每个服务进行监听，效率不高，在公司中不建议使用
+	3.SpringConfig 配置中心 不需要重新启动服务器

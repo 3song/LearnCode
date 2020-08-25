@@ -1,0 +1,244 @@
+SpringBoot三大特性：
+1.帮助开发者快速整合第三方常用框架（原理maven依赖封装）
+2.完全不需要外部服务器运行，内嵌入服务器（tomcat，jetty，undertow）原理：java语音创建tomcat
+3.完全通过注解形式替代了Spring mvc xml配置 Spring本身支持注解启动，只是做了包装 
+4.Springboot和SpringCloud总是一起用
+Springboot 和微服务的关联？
+SpringCloud（Http接口+rest）是基于SpringBoot web组件封装了SpringMVC
+
+面向于服务架构（SOA）转变为微服务架构（把一个大项目拆分成一个个小的组件）
+
+什么是多环境配置？
+企业中，分为不同环境配置
+test 表示 本地开发环境
+sit环境  表示测试环境
+pre环境 表示预生产环境
+prd环境 生产环境
+
+SpringBoot封装jar依赖原理
+Maven---继承依赖管理
+所有jar全部都在parent依赖
+
+什么是全局捕获异常
+
+web开发时，请求500
+400返回String类型，并指定对应的404页面
+SpringBoot整合页面
+
+SpringBoot优先使用模板引擎，不建议使用jsp
+
+什么是模板引擎？（SpringBoot推荐）
+动态HTML实现
+伪html格式
+1.提高搜索引擎搜索。动态页面静态化
+对应技术
+freemaker，velocity
+引入freemaker依赖
+
+
+Springboot整合Jsp依赖
+   1.项目必须是war类型的
+   2.必须加入tomcat依赖和jsaper依赖
+整合遇到的问题：
+遇到的问题
+    1.文件只有在webapp下 才能识别，不需要加/web-inf/
+    2必须使用mvn spring boot：run 或 mvn clean spring boot：run (添加新的文件时需要clean重新打包)
+    3.一个项目只有一个main方法   @SpringBootApplication 不限制
+    4.文件夹与resources文件夹同级
+    目录结构如下：
+    	项目文件夹
+		    -.mvn
+		 	-src
+    		   --main
+    		    ---java
+    		  	---resources
+    		  	---webapp
+    		    --test
+		 	-target
+		 	-pom.xml
+
+SpringTemplate 整合 SpringBoot 
+注意点：
+1. 导多个包 @ComponentScan(basePackages = {"com.item.controller","com.item.service"})
+2.application.properties文件名不要错
+
+
+SpringJPA 整合 SpringBoot 
+注意点：
+1.Springboot可以整合多个jdbc框架，而不会有冲突（同库）
+2.包冲突问题加强训练
+3.hibernateLazyInitializer 属性   不能被格式化json    需要在实体类上加@JsonIgnoreProperties(value={"hibernateLazyInitializer"})  
+PS:@JsonIgnoreProperties就是标注 哪个属性 不用转化为json的
+
+*** 重要：SpringBoot 整合  mybatis + redis + activemq   
+问题： 为什么有的依赖不需要加<version>2.2.6.RELEASE</version>  估计是因为只有使用父节点才能同步版本号
+
+mybatis 配置方式有两种：1.注解形式，2.xml形式(mapper.xml)
+注意点：
+1.所有用到的属性都需要装配进去
+@Autowired注解与@Resource注解的区别
+（1）@Autowired与@Resource都可以用来装配bean，都可以写在字段或setter方法上
+
+（2）@Autowired默认按类型装配，默认情况下必须要求依赖对象存在，如果要允许null值，可以设置它的required属性为false。如果想使用名称装配可以结合@Qualifier注解进行使用。
+
+（3）@Resource，默认按照名称进行装配，名称可以通过name属性进行指定，如果没有指定name属性，当注解写在字段上时，默认取字段名进行名称查找。如果注解写在setter方法上默认取属性名进行装配。当找不到与名称匹配的bean时才按照类型进行装配。但是需要注意的是，如果name属性一旦指定，就只会按照名称进行装配。
+
+推荐使用@Resource注解在字段上，这样就不用写setter方法了，并且这个注解是属于J2EE的，减少了与Spring的耦合。
+
+
+@SpringBootApplication 注解:
+1.作用是启动项目，整合了常用注解 @Configuration @ComponentScan @EnableAutoConfiguration
+2.扫包（当前同级范围扫包）
+
+
+SpringBoot整合多数据源 （分布式，微服务）的基本 （因为要保证多方数据源的一致性）数据库的四大特性：？
+
+多数据源可能产生的问题：1.事务的管理 
+
+在实际项目中，怎么搭建多数据源 ，怎样区分多数据源？
+1.分包结构
+分为test1数据源和test2数据源
+com.test1...
+com.test2...
+只要在test1包下就访问test1 数据库
+只要在test2包下就访问test2 数据库
+（实际上就是在拆分项目：这就是分布式事务）
+分布式事务解决方案 jta+automatic 传统项目
+2.注解方式区分 在方法上注释数据源
+class UserController{
+	@dataSourcetest001
+	public void test01(){
+
+	}
+	@dataSourcetest002
+	public void test02(){
+	
+	}
+}
+1.搭建两个数据源时   需使用@Primary注解指定默认的数据源 
+2.配置多个数据源启动报错，error querying database. Cause: java.lang.IllegalArgumentException: dataSource or dataSourceClassName or jdbcUrl is required，
+主要原因是在1.0 配置数据源的过程中主要是写成：spring.datasource.url 和spring.datasource.driverClassName。
+而在2.0升级之后需要变更成：spring.datasource.jdbc-url和spring.datasource.driver-class-name即可解决！
+3.spring boot2.0与1.0的差别虽然不大，但有些小地方差别极为关键，如果在2.0中仍然按照1.0的做法去做，会出现非常难办的情况，特别是关于mybatis数据源的配置（自定义数据源或多数据源）。
+对于自定义数据源或多数据源的问题，为简洁起见，我直接总结：
+1、SpringApplication类无需再配置(exclude = DataSourceAutoConfiguration.class)
+这个在1.0中是必须的，如果不exclude，会导致你的自定义数据源不生效。
+2、通过@Configuration创建数据源配置类后，可以单独指定MapperScan，但此时需要注意吧SpringApplication的@ComponentScan去掉，如果不去掉，则这个配置类不会生效或发送相关错误
+这个可能是spring boot 2.1的一个bug
+如果配置了则他会强制去读取：
+#spring.datasource.url=jdbc:mysql://127.0.0.1:3306/jdartdb?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+#spring.datasource.username=root
+#spring.datasource.password=123456
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+这些默认的属性，而不是你自己定义的其他配置
+3、mapper的接口、xml形式以及dao层都需要两个分开.
+
+SpringBoot注意点：在同一个模块中，不可以出现相同名称的类名，不同包也不行
+
+SpringBoot整合事务
+事务的分类（编程式事务，声明式事务（xml方式、注解方式））
+注解方式@Transactional使用这个注解 可以报错自动回滚
+
+事务的特性
+原子性（Atomicity）：事务是一个原子操作，由一系列动作组成。事务的原子性确保动作要么全部完成，要么完全不起作用。
+一致性（Consistency）：一旦事务完成（不管成功还是失败），系统必须确保它所建模的业务处于一致的状态，而不会是部分完成部分失败。在现实中的数据不应该被破坏。
+隔离性（Isolation）：可能有许多事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏。
+持久性（Durability）：一旦事务完成，无论发生什么系统错误，它的结果都不应该受到影响，这样就能从任何系统崩溃中恢复过来。通常情况下，事务的结果被写到持久化存储器中。
+
+SpringBoot事务不生效：
+1.mysql表必须支持事务：引擎为INNODB
+
+2.SpringBoot启动事务@@EnableTransactionManagement
+
+3.方法上加注解@Transactional//默认只对RuntimeException起作用,可修改
+
+4.方法必须为public修饰
+
+5.同类中事务的方法不能嵌套在其他方法中
+
+
+事务暂时出现问题
+
+JTA automikos
+
+
+
+Spring Boot 1.4 以上不支持 log4j ，首先说版本！
+
+
+使用aop管理日志 打印web请求参数
+
+1.首先加入aop依赖
+starter-aop
+写入aop代码
+@Aspect
+//定义一个切面
+@Component("user")
+//表示把这个类注册到SpringBoot容器中去
+spring注解中@component就是说把这个类交给Spring管理，又一次起个名字叫user，因为不清楚这个类是属于哪个层面，所以就用@Component。
+因为在持久层、业务层和控制层中，分别采用@Repository、@Service和@Controller对分层中的类进行凝视，而用@Component对那些比较中立的类进行凝视。
+@Pointcut("execution(public * com.controller.*.*(..))")
+//定义一个切入点   从 controller开始拦截
+
+@Before("WebLog()")
+//定义拦截方法之前执行的操作
+@AfterReturning(returning = "ret",pointcut = "WebLog()")
+//处理完请求，返回内容
+
+SpringBoot 实现任务调度
+1.创建任务调度类
+2.把创建的类加入到SpringBoot容器中去:使用@Component
+3.需要加@EnableScheduling 到启动类上，表示开启定时任务
+任务调度原理
+通过线程实现，sleep进行等待
+
+SpringBoot 异步调用
+在SpringBoot中其实已经实现了异步化（不需要等待，类似多线程）
+
+
+多环境配置
+在企业中，是分为不同环境的配置文件（生产环境，测试环境） 作为不同环境区分
+1.test-本地开发环境
+2.sit-测试环境
+3.pre-预生产环境
+4.prd-生产环境  
+
+
+SpringBoot 修改端口号
+
+另一种SpringBoot配置文件方式（yml文件）
+yml文件编写时注意***
+server:
+  port: 8090
+  servlet:
+    context-path: /SpringBootLog4j
+冒号后边一定要有空格（或回车空行）
+优点：加配置文件 简单
+
+
+SpringBoot打包发布
+mvn package
+WAR包  打成Jar 包 使用 java - jar SpringJsp-1.0-SNAPSHOT.war（war 文件路径）
+SpringJsp-1.0-SNAPSHOT.war中没有主清单属性 出现这个说明SpringBoot找不到主函数入口 需要指定入口
+需要在Pom.xml中配置
+
+<artifactId>springboot-jsp</artifactId>
+<name>spring-boot-war</name> 同时出现，首先使用name标签的名字
+<packaging>war</packaging> 表示项目打包方式
+
+SpringBoot1 与 2的区别
+
+SpringBoot整合Redis(见示例)
+使用 StringRedisTemplate stringRedisTemplate对象
+
+总结：redis怎么存放对象，用什么类型好
+使用String类型来存放对象，使用json格式存入redis数据库
+将对象转换为json格式存放在redis中，从redis中获取json值，反序列化成对象（反序列化）
+
+
+
+1、springMVC是Spring的一个模式，是一个Web框架，提供了一个轻度耦合的方式来开发Web应用；
+
+2、SpringBoot是习惯优于配置，降低了项目搭建的难度；
+
+3、springMVC需要使用到TomCat服务器，SpringBoot的话是内嵌了Tomcat服务器的；
