@@ -1,0 +1,28 @@
+redis-server 7001/redis.conf
+rm -f /app/redis/redis-cluster/7004/appendonly.aof
+rm -f /app/redis/redis-cluster/7004/dump.rdb
+rm -f /app/redis/redis-cluster/7004/nodes.conf
+
+rm -f /app/redis/redis-cluster/7005/appendonly.aof
+rm -f /app/redis/redis-cluster/7005/dump.rdb
+rm -f /app/redis/redis-cluster/7005/nodes.conf
+
+/app/redis/redis-cluster/redis-server /app/redis/redis-cluster/7004/redis.conf
+/app/redis/redis-cluster/redis-server /app/redis/redis-cluster/7005/redis.conf
+
+/redis-client -c -h 192.168.200.8 -p 7000
+./redis-trib.rb  create  --replicas  1  192.168.200.8:7000 192.168.200.8:7001 192.168.200.9:7002 192.168.200.9:7003 192.168.200.10:7004 192.168.200.10:7005
+
+
+nginx 启动命令
+
+ln -s /usr/local/lib/libpcre.so.1 /lib64 //移动lib
+
+
+/usr/local/nginx-1.9.9/sbin/nginx -c /usr/local/nginx-1.9.9/conf/nginx.conf 启动
+./usr/local/nginx-1.9.9/sbin/nginx  -s reload
+
+keepalived 设置为系统服务
+mkdir /etc/keepalived
+ cp /usr/local/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/
+ 

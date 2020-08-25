@@ -1,0 +1,21 @@
+报错整理
+
+1. There is already 'userController' bean method 
+@RequestMapping("/insertUsersUser") 不能同名
+
+2.启动时报错
+Description:
+A component required a bean of type 'com.mapper.UsersMapper' that could not be found.
+Action:
+Consider defining a bean of type 'com.mapper.UsersMapper' in your configuration. 
+解决：记得在实体类添加扫包位置@MapperScan("com.mapper")
+
+
+@RequestMapping 在Spring Web 包下   需要引入web依赖 web包同时整合了tomcat   页面需要通过方法跳转 标记entity的包  需要引入 persistence 依赖
+
+项目的每一层都需要标记注解
+@Mapper 标记mapper类 mybatis提供
+@Component 标记dao层 stereotype spring提供
+@Service 标记Service层 stereotype spring提供
+@Controller 标记Controller层 stereotype spring提供
+@Entity 标记实体类层 由import javax.persistence.Entity; 提供

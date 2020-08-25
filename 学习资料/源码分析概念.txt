@@ -1,0 +1,38 @@
+源码分析概念：
+Spring 核心
+	Spring核心jar包：
+		Spring-core Spring核心包
+		Spring-context Spring上下文 IOC实现源代码
+		Spring-Beans Spring bean实例相关
+		Spring-Jdbc 操作数据库Jar
+		Spring-AOP 面向切面编程Jar
+	Spring IOC  原理-----Java反射 +Dom4j
+
+		源码核心：BeanFactory----定义了SpringIOC的基本形式
+		//创建Bean工厂  
+        BeanFactory
+        //Spring XML属性解析   解析lazy scope  IOC反射的实现
+        BeanDefinition
+	Spring AOP  原理-----cglib 代理设计模式的动态代理 使用类的asm字节码
+SpringContext上下文作用：获取当前Spring容器对象
+Web开发  使用web.xml 加载Spring容器
+SpringBean 生命周期（Servlet 生命周期相似）
+	1.Spring 通过反射机制对Bean 进行实例化 
+	2.加载Spring初始化属性 id name 属性会注入到Bean中去
+	3.BeanNameAware 获取查找BeanName(BeanId) 
+	4.定义一个BeanFactoryAware 获取Bean容器工厂的Bean的一些基本操作（getBean）
+	5.BeanPostProcess  Spring-AOP初始化
+	6.销毁bean （distroy） web开发是在重启tomcat时销毁
+SpringAOP 核心类：AbstractAutoProxyCreator 底层使用了JdkProxy和CglibProxy动态代理
+
+SpringMVC 控制层框架:核心 把Servlet技术进行封装;
+	2002年主流 ：Servlet+JDBC
+	控制层框架：Strtus1，Strtus2
+SpringMVC源码分析：
+	1.SpringMVC 将任何请求交给 DispatcherServlet 进行管理 ----application.xml 配置 标签<servlet>
+	2.请求会先执行DispatcherServlet 的 doService方法，交给doDispatch方法处理请求
+	
+	3.doDispatch 获取 HandlerMapping
+	4.HandlerAdapter 开始初始化拦截器
+	5.获取当前ModelAndView对象
+	6.渲染jsp （视图解析） 查找application-mvc的org.springframework.web.servlet.view.InternalResourceViewResolver 视图路径后缀配置

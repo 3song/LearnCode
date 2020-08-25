@@ -1,0 +1,79 @@
+自定义注解和设计模式：
+什么是注解：为了简化代码推荐使用大量注解、代码可读性强、提高开发效率
+自定义注解
+
+注解分类：
+	1.内置注解：JDK自带注解 @Override 子类重写父类方法才能加
+	2.自定义注解：Mybatis 框架
+		//表示注解的应用场景 表示应用在方法上、Type 表示应用在类上或者接口上使用、Field 表示在属性上使用 访问权限
+		@Target({ElementType.METHOD,ElementType.TYPE,ElementType.FIELD})
+		//什么时候访问注解信息，用于描述注解的生命周期（在什么范围生效）
+		@Retention(RetentionPolicy.RUNTIME)
+		//定义一个注解类
+		@interface TestAnnotation{
+		    //表示注解的参数 表示可以不传参数 默认为0
+		    int beanId() default 0;
+		    String className() default "";
+		    String[] array(); //必须传值;
+		}
+
+使用自定义注解完成ORM框架映射：mybatis
+package com;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.reflect.Field;
+
+//对应数据库表名称
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface Table{
+    String tableName();
+}
+//数据库字段对应注解
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface Property{
+    String name() default "";
+    int length() default 0;
+}
+@Table(tableName = "Student")
+class Student{
+    @Property(name = "student_id",length=10)
+    private String id;
+    @Property(name = "student_name")
+    private String name;
+    @Property(name = "student_age")
+    private String age;
+
+    Student(String id, String name, String age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+}
+public class MybatisImplAnnotation {
+    public static void main(String[] args) throws ClassNotFoundException {
+        Class<?> student = Class.forName("com.Student");
+        //获取所有Table类的方法
+        Field[] declaredFields = student.getDeclaredFields();
+        StringBuffer stringBuffer=new StringBuffer();
+        stringBuffer.append(" select ");
+        for (int i = 0; i < declaredFields.length; i++) {
+            Field declaredField = declaredFields[i];
+            Property property = declaredField.getAnnotation(Property.class);
+            stringBuffer.append(property.name());//获取Property注解类内的参数 表名@Property(name = "student_name、id、age")
+            if (i<declaredFields.length-1){
+                stringBuffer.append(" , ");
+            }
+        }
+        //表示获取类上的注解参数
+        Table declaredAnnotation =student.getDeclaredAnnotation(Table.class);
+        stringBuffer.append(" from "+ declaredAnnotation.tableName()); //获取注解类内的参数
+        System.out.println(stringBuffer.toString());
+
+    }
+
+}

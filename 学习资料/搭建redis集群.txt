@@ -1,0 +1,52 @@
+安装redis应用
+1. tar -zxvf redis-4.0.11.tar.gz 解压redis安装包
+2. 新建集群redis文件夹
+wget http://rubygems.org/gems/redis/versions/4.1.3
+make install 默认目录为usr/bin
+make PREFIX=/app/redis/redis-4.0.11  install
+
+后台启动redis方式 redis-server路径 +配置文件路径
+./bin/redis-server ./redis.conf 
+正常连接方式
+redis-cli -h ip地址 -p 端口
+redis-cli -c -h ip地址 -p 端口 搭建集群必须加-c
+./bin/redis-cli -h 192.168.200.8 -p 6379
+正常关闭方式
+redis-cli -h 192.168.100.21 -p 6379 shutdown
+搭建redis集群
+修改配置文件
+port 7000                       #端口7000,7001,7002,7003,7004,7005
+cluster-enabled yes             #开启集群
+cluster-config-file nodes.conf  #集群配置信息，开启集群后自动生成
+cluster-node-timeout 5000       #请求超时时长 
+appendonly yes                  #开启aof日志，它会每次写操作都记录一条日志
+daemonize yes                   #redis后台运行
+bind 192.168.100.21             #默认ip为127.0.0.1 需要改为其他节点机器可访问的ip 否则创建集群时无法访问对应的端口，无法创建集群  
+pidfile  /opt/module/redis-Cluster/7000/redis_7000.pid     #pidfile文件对应7000,7001,7002,7003,7004,7005 
+dir  /opt/module/redis-Cluster/7000/    #数据文件存放位置对应7000,7001,7002,7003,7004,7005
+***编写配置文件注释要移到下一行
+
+gem文件安装
+
+ yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel libidn libidn-devel openssl openssl-devel openldap openldap-devel nss_ldap openldap-clients openldap-servers
+
+
+
+安装 之后需要make && make install
+为了使 主从节点不落在同一台机器上
+
+使用如下命令：每台IP +端口交叉（没有找到命令指定主从节点的关系的方法）
+
+./redis-trib.rb create --replicas 1 10.252.21.156:7000 10.252.21.154:7001 10.252.21.154:7000 10.252.21.157:7001 10.252.21.157:7000 10.252.21.156:7001
+*** 挂在同一服务器下
+./redis-trib.rb  create --replicas  1  192.168.200.8:7000  192.168.200.8:7001  192.168.200.9:7002  192.168.200.9:7003  192.168.200.10:7004  192.168.200.10:7005
+调换顺序
+./redis-trib.rb  create --replicas  1  192.168.200.8:7000  192.168.200.9:7003  192.168.200.9:7002  192.168.200.10:7005  192.168.200.10:7004  192.168.200.8:7001
+
+1、删除每个redis节点的备份文件，数据库文件和集群配置文件
+比如说我有7001~7006    6个节点，那么每个节点中的appendonly.aof、dump.rdb、node_xxx.conf文件都要被删除
+2、使用redis-cli -c -h -p登录每个redis节点，使用以下命令
+flushdb
+cluster reset
+3、重启所有的redis服务，再试试redis集群连接命令，应该就没问题了
+

@@ -1,0 +1,64 @@
+安装linux 指南
+yum-utils-1.1.30-14.el6.noarch
+PackageKit-yum-0.5.8-21.el6.x86_64
+yum-metadata-parser-1.1.2-16.el6.x86_64
+yum-plugin-security-1.1.30-14.el6.noarch
+yum-rhn-plugin-0.9.1-48.el6.noarch
+yum-3.2.29-40.el6.noarch
+PackageKit-yum-plugin-0.5.8-21.el6.x86_64
+导入阿里yum源
+wget --no-check-certificate https://mirrors.aliyun.com/centos/6/os/x86_64/Packages/yum-utils-1.1.30-41.el6.noarch.rpm
+wget --no-check-certificate https://mirrors.aliyun.com/centos/6/os/x86_64/Packages/PackageKit-yum-0.5.8-26.el6.x86_64.rpm
+wget --no-check-certificate https://mirrors.aliyun.com/centos/6/os/x86_64/Packages/yum-metadata-parser-1.1.2-16.el6.x86_64.rpm
+wget --no-check-certificate https://mirrors.aliyun.com/centos/6/os/x86_64/Packages/yum-plugin-security-1.1.30-41.el6.noarch.rpm
+wget --no-check-certificate https://mirrors.aliyun.com/centos/7/os/x86_64/Packages/yum-rhn-plugin-2.0.1-10.el7.noarch.rpm
+wget --no-check-certificate https://mirrors.aliyun.com/centos/6/os/x86_64/Packages/yum-3.2.29-81.el6.centos.noarch.rpm
+wget --no-check-certificate https://mirrors.aliyun.com/centos/6/os/x86_64/Packages/PackageKit-yum-plugin-0.5.8-26.el6.x86_64.rpm
+
+###wget --no-check-certificate https://mirrors.aliyun.com/centos/7/os/x86_64/Packages/python-urlgrabber-3.10-9.el7.noarch.rpm
+
+
+
+rpm -ivh yum-utils-1.1.30-41.el6.noarch.rpm --force --nodeps
+rpm -ivh PackageKit-yum-0.5.8-26.el6.x86_64.rpm --force --nodeps
+rpm -ivh yum-metadata-parser-1.1.2-16.el6.x86_64.rpm --force --nodeps
+rpm -ivh yum-plugin-security-1.1.30-41.el6.noarch.rpm --force --nodeps
+rpm -ivh yum-3.2.29-81.el6.centos.noarch.rpm --force --nodeps
+rpm -ivh PackageKit-yum-plugin-0.5.8-26.el6.x86_64.rpm --force --nodeps
+//在os.d 下
+wget --no-check-certificate https://mirrors.aliyun.com/repo/Centos-6.repo
+
+sed -i 's/$releasever/6/g' /etc/yum.repos.d/Centos-6.repo  
+[root@darg98 redis]# whereis python
+python: /usr/bin/python2.6 /usr/bin/python /usr/lib/python2.6 /usr/lib64/python2.6 /usr/local/bin/python3.5m /usr/local/bin/python3.5m-config /usr/local/bin/python3.5-config /usr/local/bin/python3.5 /usr/local/lib/python3.5 /usr/include/python2.6 /usr/local/python2.7 /usr/share/man/man1/python.1.gz
+ 
+[root@darg98 redis]# whereis yum
+yum: /usr/bin/yum /etc/yum.conf /etc/yum /usr/share/man/man8/yum.8.gz
+ 
+--修改 yum文件
+[root@darg98 redis]# vi /usr/bin/yum
+将首行的#!/usr/bin/python3
+更改成   #!/usr/bin/python2.6
+ 
+:wq保存退出
+[root@darg98 redis]#  yum install xxxxx
+ 
+1）下载wget         
+
+yum install -y wget
+      2）备份默认的yum
+
+mv /etc/yum.repos.d /etc/yum.repos.d.backup
+      3）设置新的yum目录
+
+mkdir /etc/yum.repos.d
+      4）下载阿里yum配置到该目录中
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+       5）重建缓存
+
+yum clean all
+yum makecache
+       6）升级所有包（改变软件设置和系统设置，系统版本内核都升级，故需要几分钟耐心等待）
+
+yum update -y
