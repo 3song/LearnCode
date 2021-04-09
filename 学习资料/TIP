@@ -1,0 +1,3 @@
+netstat -o -n -a | findstr :8080   //  8080为需关闭的端口
+ TCP    0.0.0.0:3000      0.0.0.0:0              LISTENING       3116
+taskkill /F /PID 3116   // 3116 为 查询到的进程号
