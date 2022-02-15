@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdsoft.xtgl.dao.XtglB01Mapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.bdsoft.xtgl.entity.XtglB01">
+        <id column="B00" property="b00"/>
+        <result column="B0101" property="b0101"/>
+        <result column="B0104" property="b0104"/>
+        <result column="B0114" property="b0114"/>
+        <result column="B0144B" property="b0144b"/>
+        <result column="B0157B" property="b0157b"/>
+        <result column="B0127" property="b0127"/>
+        <result column="B0132" property="b0132"/>
+        <result column="ZDYXB0104" property="zdyxb0104"/>
+        <result column="FLAG" property="flag"/>
+        <result column="PORDER" property="porder"/>
+        <result column="DELETEFLAG" property="deleteflag"/>
+        <result column="ZDYXB0161" property="zdyxb0161"/>
+    </resultMap>
+
+    <select id="getB01DataWithParam" parameterType="map" resultType="com.bdsoft.xtgl.query.B01LazyTree">
+        <include refid="lazySelect"/>
+        <include refid="lazyWhere"/>
+        AND (B0101 LIKE CONCAT('%', #{b0101}, '%') or B0104 like CONCAT('%', #{b0101}, '%'))
+        <if test="onlyCompany != null and onlyCompany == true">
+            AND B.ZDYXB0104 IN ('1', 'A')
+        </if>
+        <include refid="searchAuthorSql"/>
+        <if test="managedOrganization != null and managedOrganization != ''">
+            AND G.DMCOD IN
+            (
+            SELECT DMCOD
+            FROM B01
+            WHERE DMCOD = #{managedOrganization}
+            OR DMPARENTCOD = #{managedOrganization}
+            )
+        </if>
+        ORDER BY G.PORDER
+    </select>
+
+    <select id="lisParentB00TreeInfo" resultType="com.bdsoft.xtgl.query.B01LazyTree">
+        SELECT distinct b.B0104 AS B0101,
+        bh.DMCOD,
+        bh.DMPARENTCOD,
+        bh.DMPARENTLEV,
+        bm.NODEID,
+        bh.ISB01,
+        b.PORDER,
+        b.ZDYXB0104 AS DWTYPE,
+        <include refid="field_2"/>,
+        TBL.COUNT leafCount
+        FROM b01 b
+        <if test="isShowDepart">
+            LEFT JOIN b01_node_mapping bm ON b.B00 = bm.B00 and bm.NODEID = #{nodeId}
+            INNER JOIN b01_group1_hiber bh on b.B00 = bh.DMCOD and bh.DELETEFLAG = 0
+        </if>
+        <if test="!isShowDepart">
+            INNER JOIN b01_node_mapping bm ON b.B00 = bm.B00 and bm.NODEID = #{nodeId}
+            INNER JOIN b01_group1_hiber bh on bm.B00 = bh.DMCOD and bh.DELETEFLAG = 0
+        </if>
+
+        <if test="!isShowDepart">
+            AND b.ZDYXB0104 != '2'
+        </if>
+        <if test="isShowDepart">
+            AND (b.ZDYXB0104 = '2' or
+            (b.ZDYXB0104 != '2' and b.b00 in (select b00 from b01_node_mapping bm where bm.NODEID = #{nodeId})
+            )
+            )
+        </if>
+        LEFT JOIN (
+        SELECT COUNT(HIBER.DMCOD) COUNT,
+        DMPARENTCOD AS UID
+        FROM
+        B01_GROUP1_HIBER HIBER
+        INNER JOIN B01 ON B01.B00 = HIBER.DMCOD and B01.DELETEFLAG = 0
+        <if test="!isShowDepart">
+            INNER JOIN b01_node_mapping bm ON bm.B00 = B01.b00 and bm.NODEID = #{nodeId}
+        </if>
+        WHERE
+        HIBER.DELETEFLAG = 0
+        and B01.DELETEFLAG = 0
+        AND B01.FLAG = 0
+        and DMPARENTLEV = 1
+        <!-- 叶子节点，是否显示部门树过滤-->
+        <if test="!isShowDepart">
+            AND B01.ZDYXB0104 != '2'
+        </if>
+        <if test="isShowDepart">
+            AND(B01.ZDYXB0104 = '2' or
+            (B01.ZDYXB0104 != '2'
+            and B01.b00 in (select b00 from b01_node_mapping bm where bm.NODEID = #{nodeId})
+            )
+            )
+        </if>
+        <if test="b0101 != null and b0101 != ''">
+            <bind name="b0101_like" value="'%' + b0101 + '%'"/>
+            and B01.b0101 like #{b0101_like}
+        </if>
+        GROUP BY DMPARENTCOD
+        )TBL ON TBL.UID = b.B00
+        WHERE 1 = 1
+        and b.DELETEFLAG = 0
+        AND b.FLAG = 0
+        <if test="parentB00 != null and parentB00 != ''">
+            and bh.DMPARENTCOD = #{parentB00}
+        </if>
+        <if test="parentB00 == null or parentB00 == ''">
+            <if test="b0101 == null or b0101 == ''">
+                and bm.NODEID = #{nodeId}
+            </if>
+        </if>
+
+        AND bh.DMPARENTLEV = '1'
+        <if test="b0101 != null and b0101 != ''">
+            <bind name="b0101_like" value="'%' + b0101 + '%'"/>
+            and b.b0101 like #{b0101_like}
+        </if>
+        <if test="excludeB00 != null and excludeB00 != ''">
+            and (bh.DMPARENTCOD != #{excludeB00} and bh.DMCOD != #{excludeB00})
+        </if>
+        <choose>
+            <when test="b00List != null and b00List.size() > 0">
+                AND bh.DMCOD IN (
+                SELECT DMPARENTCOD
+                FROM B01_GROUP1_HIBER WHERE DMCOD IN
+                <foreach collection="b00List" item="b00" open="(" separator="," close=")">
+                    #{b00}
+                </foreach>
+                )
+            </when>
+            <otherwise>
+                AND bh.DMCOD = '0'
+            </otherwise>
+        </choose>
+        group by bh.PORDER
+    </select>
+
+
+    <sql id="searchAuthorSql">
+        <if test="orgScopeType == '1'.toString()">
+            AND B0157C = #{managedOrganization}
+        </if>
+        <if test="orgScopeType == '2'.toString() or orgScopeType == '3'.toString()">
+            AND B00 IN (
+            select dmcod from b01_group1_hiber where dmcod = #{managedOrganization} or DMPARENTCOD =
+            #{managedOrganization}
+            )
+        </if>
+        <if test="orgScopeType == '4'.toString()">
+            AND B00 IN(
+            <choose>
+                <when test="type != null and type == 2">
+                    <include refid="selectB00ListByNodeId"/>
+                    <if test="onlyCompany != null and onlyCompany == true">
+                        AND b.ZDYXB0104 IN('1','A')
+                    </if>
+                </when>
+                <when test="type != null and type == 3">
+                    <include refid="getRoleOrgSelectChild"/>
+                </when>
+                <otherwise>
+                    <include refid="sym_authB00List"/>
+                </otherwise>
+            </choose>
+            )
+        </if>
+    </sql>
+
+    <select id="listParentData" parameterType="map" resultType="com.bdsoft.xtgl.query.B01LazyTree">
+        <include refid="lazySelect"/>
+        <include refid="lazyWhere"/>
+
+        AND DMPARENTLEV = 1
+
+        <choose>
+            <when test="b00List != null and b00List.size() > 0">
+                AND G.DMCOD IN (
+                SELECT DMPARENTCOD
+                FROM B01_GROUP1_HIBER WHERE DMCOD IN
+
+                <foreach collection="b00List" item="b00" open="(" separator="," close=")">
+                    #{b00}
+                </foreach>
+                )
+            </when>
+            <otherwise>
+                AND G.DMCOD = '0'
+            </otherwise>
+        </choose>
+        <include refid="searchAuthorSql"/>
+        ORDER BY G.PORDER
+    </select>
+
+
+    <select id="lazyLoadB01TreeData" parameterType="map" resultType="com.bdsoft.xtgl.query.B01LazyTree">
+        SELECT B0101,
+        DMCPT,
+        DMCOD,
+        DMPARENTCOD,
+        DMPARENTLEV,
+        NODEID,
+        ISB01,
+        PORDER,
+        DWTYPE,
+        affiliatedOrg,
+        leafCount FROM (
+        <include refid="lazySelect"/>
+        <include refid="lazyWhere"/>
+        AND G.DMPARENTLEV = '1'
+        <if test="onlyCompany != null and onlyCompany == true">
+            AND B.ZDYXB0104 IN ('1', 'A')
+        </if>
+        <choose>
+            <when test="b00 != null and b00 != ''">
+                AND DMPARENTCOD = #{b00}
+            </when>
+            <otherwise>
+                <choose>
+                    <when test="orgScopeType == '4'.toString()">
+                        AND B.B00 in
+                        <foreach collection="rootIds" item="id" open="(" separator="," close=")">
+                            #{id}
+                        </foreach>
+                    </when>
+                    <otherwise>
+                        AND G.DMCOD = #{managedOrganization}
+                    </otherwise>
+                </choose>
+            </otherwise>
+        </choose>
+        <if test="orgScopeType == '4'.toString()">
+            <choose>
+                <when test="rootIds != null and rootIds.size() > 0">
+                    AND B.B00 IN
+                    <foreach collection="rootIds" item="id" open="(" separator="," close=")">
+                        #{id}
+                    </foreach>
+                </when>
+                <otherwise>
+                    AND B.B00 IN (
+                    <choose>
+                        <when test="type != null and type == 2">
+                            <include refid="selectB00ListByNodeId"/>
+                            <if test="onlyCompany != null and onlyCompany == true">
+                                AND b.ZDYXB0104 IN ('1', 'A')
+                            </if>
+                        </when>
+                        <when test="type != null and type == 3">
+                            <include refid="getRoleOrgSelectChild"/>
+                        </when>
+                        <otherwise>
+                            <include refid="sym_authB00List"/>
+                        </otherwise>
+                    </choose>
+                    )
+                </otherwise>
+            </choose>
+
+        </if>
+        <if test="b00 != null and b00 != ''">
+            <if test="orgScopeType == '1'.toString()">
+                and B.B00 IN (
+                SELECT B00
+                FROM B01
+                WHERE B0157C = #{managedOrganization}
+                )
+            </if>
+        </if>
+        <if test="SOME_UNIT != null and SOME_UNIT != ''">
+            union
+            <include refid="lazySelect"/>
+            <include refid="lazyWhere"/>
+            AND G.DMPARENTLEV = '1'
+            <choose>
+                        <when test="rootIds != null and rootIds.size() > 0">
+                            AND B.B00 IN
+                            <foreach collection="rootIds" item="id" open="(" separator="," close=")">
+                                #{id}
+                            </foreach>
+                        </when>
+                        <otherwise>
+                            and B.B00 IN(
+                            <choose>
+                                <when test="type != null and type == 2">
+                                    <include refid="selectB00ListByNodeId"/>
+                                    <if test="onlyCompany != null and onlyCompany == true">
+                                        AND b.ZDYXB0104 IN ('1', 'A')
+                                    </if>
+                                </when>
+                                <when test="type != null and type == 3">
+                                    <include refid="getRoleOrgSelectChild"/>
+                                </when>
+                                <otherwise>
+                                    <include refid="sym_authB00List"/>
+                                </otherwise>
+                            </choose>
+                            )
+                        </otherwise>
+                    </choose>
+        </if>
+        )B01TREE
+        ORDER BY B01TREE.PORDER
+    </select>
+
+    <select id="findB01ById" parameterType="map" resultType="com.bdsoft.xtgl.entity.XtglB01">
+        select b00,
+        CASE
+        WHEN length(b0144b) > 0 THEN
+        b0144b
+        ELSE b0157b
+        END as b0144b
+        from b01
+        where
+        deleteflag = 0
+        and flag = 0
+        and b01.b00 in
+        <choose>
+            <when test="type != null and type == 2">
+                <foreach collection="roleSelectOrgIds" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </when>
+            <when test="type != null and type == 3">
+                <include refid="getRoleOrgSelectChild"/>
+            </when>
+            <otherwise>
+                (
+                <include refid="sym_authB00List"/>
+                )
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <sql id="lazySelect">
+        SELECT distinct B.B0104 AS B0101,
+        DMCOD,
+        CASE WHEN LENGTH(b0144b) > 0 THEN B0144B ELSE B0157B END DMPARENTCOD,
+        DMPARENTLEV,
+        NODEID,
+        ISB01,
+        G.PORDER,
+        B.ZDYXB0104 AS DWTYPE,
+        <include refid="field_1"/>
+    </sql>
+    <sql id="sym_authB00List">
+        SELECT
+        b00
+        FROM
+        s_au_user_org
+        <where>
+            AND userid IN
+            <foreach collection="userIds" item="userId" open="(" separator="," close=")">
+                #{userId}
+            </foreach>
+            AND funcode = #{selectFunCode}
+        </where>
+    </sql>
+    <sql id="lazyWhere">
+        FROM B01_GROUP1_HIBER G
+        INNER JOIN B01 B ON B.B00 = G.DMCOD
+        LEFT JOIN (
+        SELECT
+        COUNT( HIBER.DMCOD ) COUNT ,DMPARENTCOD AS UID
+        FROM
+        B01_GROUP1_HIBER HIBER
+        INNER JOIN B01 ON B01.B00 = HIBER.DMCOD
+        WHERE
+        B01.DELETEFLAG = 0
+        AND B01.FLAG = 0
+        and DMPARENTLEV = 1
+        <if test="onlyCompany != null and onlyCompany == true">
+            AND B01.ZDYXB0104 IN('1','A')
+        </if>
+        <choose>
+            <when test="orgScopeType == '1'.toString()">
+                AND B01.B00 IN( SELECT B00 FROM B01 WHERE B0157C = #{managedOrganization})
+            </when>
+            <when test="orgScopeType == '2'.toString() or orgScopeType == '3'.toString()">
+                AND B01.B00 IN (
+                select dmcod from b01_group1_hiber where dmcod = #{managedOrganization} or DMPARENTCOD =
+                #{managedOrganization}
+                )
+            </when>
+            <when test="orgScopeType == '4'.toString()">
+                AND B01.B00 IN (
+                <choose>
+                    <when test="type != null and type == 2">
+                        <include refid="selectB00ListByNodeId"/>
+                        <if test="onlyCompany != null and onlyCompany == true">
+                            AND b.ZDYXB0104 IN('1','A')
+                        </if>
+                    </when>
+                    <when test="type != null and type == 3">
+                        <include refid="getRoleOrgSelectChild"/>
+                    </when>
+                    <otherwise>
+                        <include refid="sym_authB00List"/>
+                    </otherwise>
+                </choose>
+                )
+            </when>
+            <otherwise>
+                AND B01.B00 = '0'
+            </otherwise>
+        </choose>
+        GROUP BY DMPARENTCOD
+        )TBL ON TBL.UID = G.DMCOD
+        WHERE B.DELETEFLAG = 0
+        AND B.FLAG = 0
+    </sql>
+
+    <sql id="getRoleOrgSelectChild">
+        <choose>
+            <!-- 当前角色编辑的组织下的数据 -->
+            <when test="dataCurrentOrg != null and dataCurrentOrg">
+                SELECT DMCOD
+                FROM b01_group1_hiber h
+                LEFT JOIN B01 b ON h.DMCOD = b.B00
+                WHERE b.DELETEFLAG = '0'
+                AND h.DELETEFLAG = '0'
+                AND (
+                h.DMPARENTCOD = #{b00}
+                )
+            </when>
+            <!-- 进行组织名称搜索查询 -->
+            <when test="findByUnitName != null and findByUnitName">
+                <!-- 授权范围内的下级部门数据 -->
+                SELECT DMCOD
+                FROM b01_group1_hiber h
+                LEFT JOIN B01 b ON h.DMCOD = b.B00
+                WHERE b.DELETEFLAG = '0'
+                AND h.DELETEFLAG = '0'
+                AND (
+                h.DMPARENTCOD in (SELECT B00 FROM b01_node_mapping WHERE NODEID =
+                #{nodeId}) OR h.DMCOD IN (SELECT B00 FROM b01_node_mapping WHERE NODEID =
+                #{nodeId})
+                )
+                <if test="findByUnitNameParent == null or !findByUnitNameParent">
+                    AND b.ZDYXB0104 = 2
+                </if>
+                <!-- 本身角色对应的组织下的所有数据 -->
+                union all
+                SELECT DMCOD
+                FROM b01_group1_hiber h
+                LEFT JOIN B01 b ON h.DMCOD = b.B00
+                WHERE b.DELETEFLAG = '0'
+                AND h.DELETEFLAG = '0'
+                AND (
+                h.DMPARENTCOD = #{role_org_b00} or h.DMCOD = #{role_org_b00}
+                )
+                <!-- 节点授权的单位数据 -->
+                union all
+                SELECT B00 FROM b01_node_mapping WHERE NODEID = #{nodeId}
+            </when>
+            <!-- 角色-点击指定组织查询下级数据 -->
+            <otherwise>
+                <if test="onlyCompany == null or !onlyCompany">
+                    SELECT DMCOD
+                    FROM b01_group1_hiber h
+                    LEFT JOIN B01 b ON h.DMCOD = b.B00
+                    WHERE b.DELETEFLAG = '0'
+                    AND h.DELETEFLAG = '0'
+                    AND (
+                    h.DMPARENTCOD = #{b00}
+                    )
+                    AND b.ZDYXB0104 = 2
+                    union all
+                </if>
+                SELECT B00
+                FROM b01_node_mapping
+                WHERE NODEID = #{nodeId}
+                AND B00 in (
+                SELECT DMCOD
+                FROM b01_group1_hiber h
+                LEFT JOIN B01 b ON h.DMCOD = b.B00
+                WHERE b.DELETEFLAG = '0'
+                AND h.DELETEFLAG = '0'
+                AND (h.DMPARENTCOD = #{b00})
+                )
+            </otherwise>
+        </choose>
+    </sql>
+
+
+    <sql id="selectB00ListByNodeId">
+        SELECT DMCOD
+        FROM b01_group1_hiber h
+        LEFT JOIN B01 b ON h.DMCOD = b.B00
+        WHERE
+        b.DELETEFLAG = '0'
+        AND h.DELETEFLAG = '0'
+        <if test="nodeId != null and nodeId != ''">
+            and (h.DMPARENTCOD IN (SELECT B00 FROM b01_node_mapping WHERE NODEID = #{nodeId}) OR
+            h.DMCOD IN (SELECT B00 FROM b01_node_mapping WHERE NODEID = #{nodeId})
+            <if test="_parameter.containsKey('curOrgIdExist') and curOrgIdExist and role_org_b00 != null and role_org_b00 != ''">
+                or h.DMPARENTCOD = #{role_org_b00} OR h.DMCOD = #{role_org_b00}
+            </if>
+            )
+        </if>
+    </sql>
+    <select id="getB00Exist" resultType="string">
+        <include refid="selectB00ListByNodeId"/>
+        <if test="parentB00 != null and parentB00 != ''">
+            AND (h.DMPARENTCOD = #{parentB00} OR h.DMCOD = #{parentB00})
+        </if>
+        AND h.DMCOD =
+        #{b00}
+    </select>
+
+    <select id="getOrderedB00List" resultMap="BaseResultMap">
+        select b01.*
+        from b01_group1_hiber
+                 left join b01 on b01_group1_hiber.dmcod = b01.B00
+        WHERE b01_group1_hiber.DMPARENTCOD = #{parentB00}
+          and b01_group1_hiber.DMPARENTLEV = 1
+          and b01_group1_hiber.DELETEFLAG = 0
+          and b01.ZDYXB0104 in ('A', '1')
+          and b01.DELETEFLAG = 0
+          and b01.FLAG = 0
+        ORDER BY b01_group1_hiber.PORDER
+    </select>
+
+    <select id="getPatentB00" resultType="string">
+        SELECT h.DMPARENTCOD
+        FROM b01_group1_hiber h
+        WHERE h.DMPARENTLEV = '1'
+          and h.DMCOD = #{b00}
+    </select>
+
+    <select id="getOrgIds" resultType="java.lang.String">
+        <include refid="sym_authB00List"/>
+    </select>
+
+
+    <select id="getOrgIdList" resultType="string">
+        SELECT DMCOD
+        FROM b01_group1_hiber WHERE DELETEFLAG = 0
+        AND
+        <if test="orgIds != null and orgIds.size() > 0 and orgIds.get(0).size() > 0">
+            <foreach collection="orgIds" item="ids" open="(" separator="or" close=")">
+                DMPARENTCOD IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </foreach>
+            <if test="selectProvince != null and selectProvince">
+            AND
+            <foreach collection="orgIds" item="ids" open="(" separator="or" close=")">
+                DMCOD NOT IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </foreach>
+
+            </if>
+        </if>
+    </select>
+
+    <select id="getChilenOrgIdList" resultType="string">
+        SELECT b00 FROM b01
+        where deleteflag = 0 and flag = 0
+        and zdyxb0104 = '2'
+        AND
+        <if test="orgIds != null and orgIds.size() > 0 and orgIds.get(0).size() > 0">
+            <foreach collection="orgIds" item="ids" open="(" separator="or" close=")">
+                b0157c IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </foreach>
+            AND
+            <foreach collection="orgIds" item="ids" open="(" separator="or" close=")">
+                B00 NOT IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getChilenOrgDwIdList" resultType="string">
+        select hiber.DMCOD from b01_group1_hiber hiber
+        INNER JOIN B01 b01 ON hiber.DMCOD = b01.B00
+        INNER JOIN b01_node_mapping bnm ON hiber.DMCOD = bnm.B00
+        where b01.zdyxb0104 in ('1','A')
+        AND bnm.NODEID = #{nodeId}
+        AND
+        <if test="orgIds != null and orgIds.size() > 0 and orgIds.get(0).size() > 0">
+            <foreach collection="orgIds" item="ids" open="(" separator="or" close=")">
+                hiber.DMPARENTCOD IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </foreach>
+            AND
+            <foreach collection="orgIds" item="ids" open="(" separator="or" close=")">
+                DMCOD NOT IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </foreach>
+        </if>
+    </select>
+</mapper>
